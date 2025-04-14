@@ -1,0 +1,56 @@
+/* TabBar.css */
+.tab-container {
+    /* max-width: 1200px; */
+    margin: 0 auto;
+    padding: 5px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .tab-button {
+    flex: 1 1 auto;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #f0f0f0;
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .tab-button:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+  }
+  
+  .tab-button.active {
+    background: #2196f3;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tab-content {
+    padding: 20px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .content {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  @media (max-width: 768px) {
+    .tabs {
+      /* flex-direction: column; */
+    }
+}

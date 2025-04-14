@@ -1,0 +1,405 @@
+  :root {
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --secondary: #f43f5e;
+      --danger: #ef4444;
+      --danger-hover: #dc2626;
+      --background: #f8fafc;
+      --text: #0f172a;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .ig-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      background: var(--background);
+  }
+
+  .ig-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: var(--card-bg);
+      border-radius: 1rem;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+  }
+
+  .ig-title {
+      font-size: 2.5rem;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+  }
+
+  .ig-upload-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+  }
+
+  .ig-upload-label {
+      cursor: pointer;
+      transition: transform 0.2s ease;
+  }
+
+  .ig-upload-label:hover {
+      transform: translateY(-2px);
+  }
+
+  .ig-upload-input {
+      display: none;
+  }
+
+  .ig-upload-button {
+      background: var(--primary);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+  }
+
+  .ig-upload-button:hover {
+      background: var(--primary-hover);
+  }
+
+  .ig-preview-wrapper {
+      position: relative;
+      max-width: 400px;
+      width: 100%;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+  }
+
+  .ig-preview {
+      width: 100%;
+      height: auto;
+      display: block;
+  }
+
+  .ig-submit-button {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--secondary);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+  }
+
+  .ig-submit-button:hover {
+      opacity: 0.9;
+  }
+
+  .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem;
+  }
+
+  .ig-card {
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+  }
+
+  .ig-card:hover {
+      transform: translateY(-5px);
+  }
+
+  .ig-card-inner {
+      position: relative;
+      padding-top: 100%;
+      background: #fff;
+  }
+
+  .ig-card-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+  }
+
+  .ig-card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 1rem;
+  }
+
+  .ig-card:hover .ig-card-overlay {
+      opacity: 1;
+  }
+
+  .ig-card-edit {
+      background: var(--card-bg);
+      color: var(--text);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+  }
+
+  .ig-card-edit:hover {
+      background: var(--primary);
+      color: white;
+  }
+
+  .ig-update-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+  }
+
+  .ig-update-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: var(--shadow);
+  }
+
+  .ig-update-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+  }
+
+  .ig-update-label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+  }
+
+  .ig-update-choose {
+      background: var(--primary);
+      color: white;
+      padding: 0.8rem;
+      border-radius: 0.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.2s ease;
+  }
+
+  .ig-update-choose:hover {
+      background: var(--primary-hover);
+  }
+
+  .ig-update-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+  }
+
+  .ig-update-cancel {
+      background: #94a3b8;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      flex: 1;
+  }
+
+  .ig-update-submit {
+      background: var(--secondary);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      flex: 1;
+      transition: opacity 0.2s ease;
+  }
+
+  .ig-update-submit:hover {
+      opacity: 0.9;
+  }
+
+  @media (max-width: 768px) {
+      .ig-header {
+          padding: 1.5rem;
+      }
+
+      .ig-title {
+          font-size: 2rem;
+      }
+
+      .ig-grid {
+          grid-template-columns: 1fr;
+      }
+
+      .ig-update-content {
+          padding: 1.5rem;
+      }
+  }
+
+
+  /* ... [Keep previous styles] ... */
+
+  .ig-card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 1rem;
+  }
+
+  .ig-card-actions {
+      display: flex;
+      gap: 0.5rem;
+      width: 100%;
+      justify-content: flex-end;
+  }
+
+  .ig-card-edit {
+      background: var(--card-bg);
+      color: var(--text);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+  }
+
+  .ig-card-delete {
+      background: var(--danger);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+  }
+
+  .ig-card-edit:hover {
+      background: var(--primary);
+      color: white;
+  }
+
+  .ig-card-delete:hover {
+      background: var(--danger-hover);
+  }
+
+  .ig-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 99999999;
+  }
+
+  .ig-modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: var(--shadow);
+  }
+
+  .ig-delete-warning {
+      color: var(--text);
+      margin: 1rem 0;
+      line-height: 1.5;
+  }
+
+  .ig-modal-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+  }
+
+  .ig-modal-cancel {
+      background: #94a3b8;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      flex: 1;
+  }
+
+  .ig-modal-confirm {
+      background: var(--primary);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      flex: 1;
+  }
+
+  .ig-modal-delete {
+      background: var(--danger);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      flex: 1;
+      transition: background 0.2s ease;
+  }
+
+  .ig-modal-delete:hover {
+      background: var(--danger-hover);
+  }
+
+  @media (max-width: 480px) {
+      .ig-card-actions {
+          flex-direction: column;
+      }
+
+      .ig-card-edit,
+      .ig-card-delete {
+          width: 100%;
+          text-align: center;
+      }
+  }

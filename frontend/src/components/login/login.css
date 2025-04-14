@@ -1,0 +1,93 @@
+#login{
+    margin: 0;
+    background-color: #f4f7f9; /* Light background color */
+}
+.login-page {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, clean font */
+    color: #333; /* Default text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 1200px; /* Optional max width for larger screens */
+    padding: 20px;
+    margin: auto;
+}
+
+.login-container {
+    background-color: #fff; /* White container background */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    text-align: center;
+    width: 100%;
+    max-width: 500px; /* Maximum width for login container */
+}
+
+.login-container h1 {
+    margin-bottom: 25px;
+    color: #3498db; /* Primary color for heading */
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Stretch inputs to container width */
+}
+
+.error-message {
+    color: #e74c3c; /* Error message color */
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    text-align: left; /* Align labels to the left */
+}
+
+.input-group label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.input-group input {
+    padding: 12px 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    transition: border-color 0.3s ease; /* Smooth transition for focus state */
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #3498db; /* Highlight border on focus */
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2); /* Subtle focus shadow */
+}
+
+.login-button {
+    background-color: #3498db; /* Primary button color */
+    color: #fff; /* White text color for button */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+    margin-top: 15px; /* Space above the button */
+}
+
+.login-button:hover {
+    background-color: #2980b9; /* Darker shade on hover */
+}
+
+.login-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5); /* Stronger focus indication for button */
+}
+

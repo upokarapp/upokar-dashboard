@@ -1,0 +1,119 @@
+.doughnut-chart-container-modern {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .doughnut-chart-svg-modern {
+    width: 100%;
+    height: auto;
+    transform: rotate(-90deg);
+  }
+  
+  .doughnut-chart-segment-modern {
+    transition: all 0.3s ease;
+    stroke: white;
+    stroke-width: 2px;
+  }
+  
+  .doughnut-chart-segment-modern:hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
+  
+  .doughnut-chart-percentage-modern {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    fill: white;
+    pointer-events: none;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .doughnut-chart-center-group-modern {
+    transform: rotate(90deg);
+  }
+  
+  .doughnut-chart-center-total-modern {
+    font-family: 'Arial', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    fill: #2c3e50;
+    text-anchor: middle;
+    dominant-baseline: middle;
+  }
+  
+  .doughnut-chart-center-label-modern {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    fill: #6c757d;
+    text-anchor: middle;
+  }
+  
+  .doughnut-chart-legend-modern {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .doughnut-chart-legend-item-modern {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+  }
+  
+  .doughnut-chart-legend-item-modern:hover {
+    transform: translateY(-3px);
+  }
+  
+  .doughnut-chart-legend-color-modern {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    margin-right: 12px;
+  }
+  
+  .doughnut-chart-legend-info-modern {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .doughnut-chart-legend-label-modern {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    color: #495057;
+    font-weight: 600;
+  }
+  
+  .doughnut-chart-legend-value-modern {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 12px;
+    color: #6c757d;
+  }
+  
+  @media (max-width: 768px) {
+    .doughnut-chart-container-modern {
+      padding: .5rem;
+      margin-top: 0px;
+    }
+    
+    .doughnut-chart-percentage-modern {
+      font-size: 10px;
+    }
+    
+    .doughnut-chart-center-total-modern {
+      font-size: 24px;
+    }
+    
+    .doughnut-chart-legend-modern {
+      /* grid-template-columns: 1fr; */
+    }
+  }

@@ -1,0 +1,89 @@
+
+// ImageKit Configuration
+const imagekit = new ImageKit({
+    publicKey:"public_TywKEZWUMlw2g9J6VWpfE4YMHfU=", 
+    privateKey :"private_w3YXm1flFh4Svchfcc98Nxf4Fl0=",
+    urlEndpoint: "https://ik.imagekit.io/mdshahid"
+});
+
+
+
+
+// File Upload Middleware
+const upload = multer({
+    storage: multer.memoryStorage(),
+    limits: { fileSize: 5 * 1024 * 1024 } // 5MB limit
+});
+
+// Upload to ImageKit
+const uploadToImageKit = async (file) => {
+    try {
+        const response = await imagekit.upload({
+            file: file.buffer.toString('base64'),
+            fileName: file.originalname,
+            folder: '/products'
+        });
+        return response.url;
+    } catch (error) {
+        console.error('ImageKit Upload Error:', error);
+        throw new Error(`Image upload failed: ${error.message}`);
+    }
+};
+
+// Routes
+app.post('/api/products', upload.array('images', 3), async (req, res) => {
+    console.log(req.body);
+    
+    try {
+        // Validate input
+        if (!req.body.name || !req.body.description || !req.body.price) {
+            return res.status(400).json({ message: 'All fields are required' });
+        }
+
+        if (!req.files || req.files.length === 0) {
+            return res.status(400).json({ message: 'At least one image is required' });
+        }
+
+        // Upload images to ImageKit
+        const imageUrls = await Promise.all(
+            req.files.map(file => uploadToImageKit(file))
+        );
+
+        // Create product
+        const product = new Product({
+            name: req.body.name,
+            description: req.body.description,
+            price: parseFloat(req.body.price),
+            images: imageUrls
+        });
+
+        // Save to database
+        await product.save();
+
+        res.status(201).json({
+            success: true,
+            message: 'Product created successfully',
+            product
+        });
+
+    } catch (error) {
+        console.error('Error creating product:', error);
+        res.status(500).json({
+            success: false,
+            message: error.message || 'Server error occurred'
+        });
+    }
+});
+
+// Error Handling Middleware
+app.use((err, req, res, next) => {
+    if (err instanceof multer.MulterError) {
+        return res.status(400).json({
+            success: false,
+            message: err.code === 'LIMIT_FILE_SIZE'
+                ? 'File size too large'
+                : 'File upload error'
+        });
+    }
+    res.status(500).json({ success: false, message: 'Server error occurred' });
+});

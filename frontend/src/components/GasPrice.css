@@ -1,0 +1,114 @@
+.price-form-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-title {
+    color: #1a365d;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .form-row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .company-label {
+    flex: 0 0 120px;
+    font-weight: 600;
+    color: #2d3748;
+  }
+  
+  .price-input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .price-input:focus {
+    outline: none;
+    border-color: #4299e1;
+  }
+  
+  .currency {
+    flex: 0 0 50px;
+    color: #4a5568;
+    font-weight: 500;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 2rem;
+    background: #4299e1;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background: #3182ce;
+    transform: translateY(-1px);
+  }
+  
+  @media (max-width: 768px) {
+    .price-form-container {
+      margin: 1rem;
+      padding: 1rem;
+    }
+  
+    .form-title {
+      font-size: 1.5rem;
+    }
+  
+    .form-row {
+      gap: 0.5rem;
+      padding: 0.5rem;
+    }
+  
+    .company-label {
+      flex: 0 0 80px;
+    }
+  
+    .price-input {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
+  
+    .currency {
+      flex: 0 0 40px;
+    }
+  
+    .submit-btn {
+      padding: 0.75rem;
+      font-size: 1rem;
+    }
+  }
