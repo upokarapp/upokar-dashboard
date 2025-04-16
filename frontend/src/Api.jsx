@@ -7,7 +7,7 @@ const config = {
     credentials: 'include',
 };
 
-const URL = 'http://localhost:2000';
+const URL = 'https://api-upokar.onrender.com';
 
 // ---------------- Customer api ------------------------------------
 const getAllCustomer = async (id) => {
