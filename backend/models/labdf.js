@@ -1,10 +1,13 @@
 import mongoose from 'mongoose';
-const lostPersonSchema = new mongoose.Schema({
+const lostPersonSchema = new mongoose.Schema(
+  {
     description: String,
     number: String,
     imageUrl: String,
     imageId: String,
-});
+  },
+  { timestamps: { createdAt: true, updatedAt: false } } 
+);
 
 const LostPerson = mongoose.model('LostPerson', lostPersonSchema);
 
