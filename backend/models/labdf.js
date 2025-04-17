@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 const lostPersonSchema = new mongoose.Schema({
     description: String,
-    phoneNumber: String,
+    number: String,
     imageUrl: String,
     imageId: String,
 });
