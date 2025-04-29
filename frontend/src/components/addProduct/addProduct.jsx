@@ -17,7 +17,7 @@ const AddProduct = () => {
   const fileInputRef = useRef(null);
 
   // Categories list
-  const categories = ['Bike', 'Furniture', 'Book', 'Electronics', 'Mobile', 'Others'];
+  const categories = ['Bike', 'Furniture', 'Book', 'Electronics', 'Mobile','Grocery', 'Others'];
 
   useEffect(() => {
     return () => {

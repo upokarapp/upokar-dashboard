@@ -1,0 +1,276 @@
+/* General Container and Form Styling (from original) */
+.add-product-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Slightly softer shadow */
+    font-family: sans-serif; /* Add a default font */
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 1.8rem; /* Adjusted size */
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.6rem; /* Increased spacing */
+    color: #34495e;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select { /* Added select here */
+    width: 100%;
+    padding: 0.8rem 1rem; /* Consistent padding */
+    border: 1px solid #bdc3c7; /* Slightly thinner border */
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box; /* Include padding and border in element's total width/height */
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus { /* Added select here */
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2); /* Focus ring */
+}
+
+textarea {
+    min-height: 100px; /* Use min-height */
+    resize: vertical;
+}
+
+/* Image Upload Section Styling */
+.image-upload-section {
+    margin-top: 0.5rem; /* Reduced top margin */
+}
+
+.upload-button {
+    display: inline-flex; /* Use inline-flex for better alignment */
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.2rem; /* Slightly adjusted padding */
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.upload-button:hover:not(:disabled) { /* Add :not(:disabled) */
+    background: #2980b9;
+}
+
+.upload-button:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Image Previews Styling */
+.image-previews {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Smaller min size */
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.image-preview {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    aspect-ratio: 1 / 1; /* Make previews square */
+}
+
+.image-preview img {
+    display: block; /* Remove extra space below image */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure image covers the area */
+}
+
+.remove-image {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.6); /* Darker background for better contrast */
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s ease;
+    color: white; /* Set icon color directly */
+}
+
+.remove-image:hover:not(:disabled) { /* Add :not(:disabled) */
+    background: rgba(231, 76, 60, 0.9); /* Red on hover */
+}
+
+.remove-image:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* Submit Button Styling */
+.submit-button {
+    width: 100%;
+    padding: 0.9rem 1rem; /* Adjusted padding */
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.05rem; /* Slightly larger font */
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+    margin-top: 1.5rem; /* Increased margin */
+}
+
+.submit-button:hover:not(:disabled) {
+    background: #219a52;
+}
+
+.submit-button:active:not(:disabled) {
+    transform: scale(0.99); /* Click effect */
+}
+
+
+.submit-button:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Error Styling */
+.error { /* Class for input/textarea/select */
+    border-color: #e74c3c !important; /* Ensure override */
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2); /* Red focus ring for errors */
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.875rem;
+    margin-top: 0.4rem; /* Increased spacing */
+    display: block;
+}
+
+.submit-error { /* Specific class for error near submit button */
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+
+/* --- Carousel Image Selection --- */
+
+.carousel-selection-section {
+    margin-top: 2rem; /* Add space above this section */
+    border-top: 1px solid #ecf0f1; /* Separator line */
+    padding-top: 1.5rem;
+}
+
+.carousel-loading,
+.carousel-error,
+.carousel-empty {
+    text-align: center;
+    padding: 1rem;
+    color: #7f8c8d;
+    background-color: #f8f9f9;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+}
+
+.carousel-error {
+    color: #e74c3c;
+    background-color: #fdeded;
+    border: 1px solid #e74c3c;
+}
+
+.carousel-image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.carousel-image-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 3px solid transparent; /* Border for selection highlight */
+    transition: border-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-image-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-image-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-image-item.selected {
+    border-color: #3498db; /* Highlight color */
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.4);
+}
+
+/* Focus style for keyboard navigation */
+.carousel-image-item:focus {
+    outline: none;
+    border-color: #2980b9; /* Darker blue for focus */
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+}
+.carousel-image-item.selected:focus {
+     border-color: #3498db; /* Keep selected color on focus */
+}
+
+
+.selected-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(52, 152, 219, 0.5); /* Blue overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    pointer-events: none; /* Allow clicks to pass through */
+}
+
+/* Ensure Material Icons load if not globally available */
+/* @import url('https://fonts.googleapis.com/icon?family=Material+Icons'); */
+/* Or use SVG icons directly */
+

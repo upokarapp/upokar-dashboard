@@ -9,6 +9,7 @@ const UserTable = () => {
   const [error, setError] = useState(null); // Error state for fetching data
   const [searchQuery, setSearchQuery] = useState(""); // State for search input
   const [searchError, setSearchError] = useState(null); // Error state for search
+  const [deleteConfirm, setDeleteConfirm] = useState(null)
 
   // Function to fetch all products
   const fetchData = async () => {
@@ -51,11 +52,11 @@ const UserTable = () => {
       await deleteProduct(id);
       // Refresh the list after deletion
       fetchData();
-      alert('User deleted successfully!');
     } catch (err) {
       alert('Failed to delete user');
     } finally {
       setLoading(false);
+      setDeleteConfirm(null); // Close the confirmation modal
     }
   };
 
@@ -76,22 +77,22 @@ const UserTable = () => {
     <div className="product-table-container" id='product-table'>
       {/* Search Form */}
       <div className="search-container">
-      <form className="search-form" onSubmit={handleSearch}>
-        <div className="input-group">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search products..."
-            className="search-input"
-          />
-          <button type="submit" className="search-button">
-            Search
-          </button>
-        </div>
-        {searchError && <div className="error-message">{searchError}</div>}
-      </form>
-    </div>
+        <form className="search-form" onSubmit={handleSearch}>
+          <div className="input-group">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search products..."
+              className="search-input"
+            />
+            <button type="submit" className="search-button">
+              Search
+            </button>
+          </div>
+          {searchError && <div className="error-message">{searchError}</div>}
+        </form>
+      </div>
 
       {/* Error Message for Data Fetching */}
       {error && <div className="error-message">{error}</div>}
@@ -122,12 +123,33 @@ const UserTable = () => {
                 <td data-label="SellerId">{user.sellerId}</td>
                 <td data-label="Category">{user.category}</td>
                 <td data-label="Options">
-                  <button onClick={() => handleDelete(user._id)} className='deleteUser'>Delete</button>
+                  <button onClick={() => setDeleteConfirm(user._id)} className='deleteUser'>Delete</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      )}
+      {deleteConfirm && (
+        <div className="confirmation-modal">
+          <div className="modal-content">
+            <p>Are you sure you want to delete this Product? This action cannot be undone.</p>
+            <div className="modal-actions">
+              <button
+                className="btn secondary"
+                onClick={() => setDeleteConfirm(null)}
+              >
+                Cancel
+              </button>
+              <button
+                className="btn danger"
+                onClick={() => handleDelete(deleteConfirm)}
+              >
+                Delete Product
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -91,6 +91,65 @@ const deleteOrder = async (id) => {
         throw new Error('Failed to fetch all admin data');
     }
 }
+// ---------------- Gift Order api ------------------------------------
+const getAllGiftOrder = async () => {
+    try {
+        const response = await axios.get(`${URL}/getAllGiftOrders`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all orders');
+    }
+}
+
+const deleteGiftOrder = async (id) => {
+    try {
+        const response = await axios.delete(`${URL}/deleteGiftOrder/${id}`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to delete order');
+    }
+}
+
+const searchGiftOrders = async (search = "") => {
+
+    try {
+        const response = await axios.post(`${URL}/searchGiftOrders`, { query: search }, config);
+        return response.data;
+    } catch (error) {
+        console.error('Error searching for products:', error);
+        throw error;
+    }
+}
+// ---------------- Kutir Order api ------------------------------------
+const getAllKutirOrders = async () => {
+    try {
+        const response = await axios.get(`${URL}/getAllKutirOrders`, config)
+        return response.data;
+    }
+    catch (error) {
+        throw new Error('Failed to fetch all orders');
+    }
+}
+
+const searchKutirOrders = async (search = "") => {
+
+    try {
+        const response = await axios.post(`${URL}/searchKutirOrders`, { query: search }, config);
+        return response.data;
+    } catch (error) {
+        console.error('Error searching for products:', error);
+        throw error;
+    }
+}
+
+const deleteKutirOrder = async (id) => {
+    try {
+        const response = await axios.delete(`${URL}/deleteKutirOrder/${id}`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to delete order');
+    }
+}
 // ---------------- Transport api ------------------------------------
 
 const getAllCarOrder = async () => {
@@ -235,11 +294,6 @@ const deletehospitals = async (data) => {
         throw new Error('Failed to fetch all admin data');
     }
 }
-
-// router.get('/', getAllAmbulances);
-// router.post('/createAmbulance', createAmbulance);
-// router.delete('//:id', deleteAmbulance);
-
 
 // ---------------- Ambulance api ------------------------------------
 const getAllAmbulance = async () => {
@@ -386,6 +440,63 @@ const deleteSliderImage = async (data) => {
     }
 }
 
+// ---------------- Community api ------------------------------------
+
+const getAllCommunity = async () => {
+    try {
+        const response = await axios.get(`${URL}/getAllCommunity`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
+const deletecommunity = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/deletecommunity`, data, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
+
+// ---------------- Kutir Shilpo api ------------------------------------
+
+const getAllKutirShilpo = async () => {
+    try {
+        const response = await axios.get(`${URL}/getAllKutirShilpo`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
+const deleteKutirShilpo = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/deletekutirshilpo`, data, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
+
+// ---------------- Gift api ------------------------------------
+
+const getAllGift = async () => {
+    try {
+        const response = await axios.get(`${URL}/getAllGifts`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch gift items');
+    }
+}
+const deleteGift = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/deleteGift`, data, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch gift items');
+    }
+}
+
 // ---------------- Tuition api ------------------------------------
 const createTuition = async (data) => {
     try {
@@ -409,6 +520,64 @@ const deleteTuition = async (id) => {
         return response.data;
     } catch (error) {
         throw new Error('Failed to fetch all admins');
+    }
+}
+
+// ---------------- Coaching api ------------------------------------
+const getAllCoaching = async () => {
+    try {
+        const response = await axios.get(`${URL}/getAllCoaching`, config)
+        return response.data;
+    }
+    catch (error) {
+        throw new Error('Failed to fetch all admins');
+    }
+}
+const deleteCoaching = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/deleteCoaching`, data, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
+
+// ---------------- Skill and IT api ------------------------------------
+
+const getAllSkillAndIT = async () => {
+    try {
+        const response = await axios.get(`${URL}/getAllSkillAndIT`, config)
+        return response.data;
+    }
+    catch (error) {
+        throw new Error('Failed to fetch all admins');
+    }
+}
+const deleteSkillAndIT = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/deleteSkillAndIT`, data, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
+
+// ---------------- Volunteer api ------------------------------------
+const getAllVolunteer = async () => {
+    try {
+        const response = await axios.get(`${URL}/getAllVolunteer`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admins');
+    }
+}
+
+const deleteVolunteer = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/deleteVolunteer`, data, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
     }
 }
 
@@ -550,6 +719,17 @@ export {
     getAllOrders,
     searchOrders,
     deleteOrder,
+
+    // Gift-Order-related functions
+    getAllGiftOrder,
+    deleteGiftOrder,
+    searchGiftOrders,
+
+    // Gift-Order-related functions
+    getAllKutirOrders,
+    searchKutirOrders,
+    deleteKutirOrder,
+
     // Transport-related functions
     getAllCarOrder,
     getAllBusOrder,
@@ -603,12 +783,37 @@ export {
     updateSliderImage,
     deleteSliderImage,
 
+    // Community-related functions
+
+    getAllCommunity,
+    deletecommunity,
+
+    // KutirShilpo-related functions
+
+    getAllKutirShilpo,
+    deleteKutirShilpo,
+
+    // Gift-related functions
+    getAllGift,
+    deleteGift,
     // Tuition-related functions
     createTuition,
     getAllTuitions,
     deleteTuition,
 
-    // Tuition-related functions
+    // Coaching-related functions
+    getAllCoaching,
+    deleteCoaching,
+
+    // Skill and IT-related functions
+    getAllSkillAndIT,
+    deleteSkillAndIT,
+
+    // Volunteer-related functions
+    getAllVolunteer,
+    deleteVolunteer,
+    
+    // Job-related functions
     createJob,
     getAllJobs,
     deleteJob,

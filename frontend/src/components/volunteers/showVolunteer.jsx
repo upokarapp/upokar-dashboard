@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
-import { getHomio, deleteHomio } from '../../Api'
+import { getAllVolunteer, deleteVolunteer } from "../../Api"
 import { Link } from 'react-router-dom';
 import Spinner from "../loader"
-import '../pharmacy/showPharmacy.css';
+import './showVolunteer.css';
 
 const OrderTable = () => {
     const [orders, setOrders] = useState([]);
@@ -14,7 +13,7 @@ const OrderTable = () => {
 
     const fetchData = async () => {
         try {
-            const response = await getHomio();
+            const response = await getAllVolunteer();
             setOrders(response);
             setLoading(false);
         } catch (err) {
@@ -25,13 +24,13 @@ const OrderTable = () => {
     useEffect(() => {
         fetchData()
     }, []);
-    const handelDelete = async (id) => {
+    const handelDelete = async (data) => {
         try {
-            await deleteHomio(id);
+            await deleteVolunteer(data);
             setDeleteConfirm(null);
             fetchData()
         } catch (err) {
-            alert("Failed to delete hospital");
+            alert("Failed to delete Volunteer");
             setDeleteConfirm(null);
             setLoading(false);
         }
@@ -48,39 +47,40 @@ const OrderTable = () => {
 
 
     return (
-        <div id='pharmacy-table'>
+        <div id='skill-table'>
             <div className="order-table-container" >
                 <div className="search-container">
                     <input
                         type="text"
-                        placeholder="Search orders..."
+                        placeholder="Search Volunteer..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="search-input"
                     />
                     <div>
-                        <Link to='/addHomeopathy' className="btn primary">Add </Link>
+                        <Link to='/addVolunteers' className="btn primary">Add </Link>
                     </div>
                 </div>
 
                 <div className="table-responsive">
                     <div className="table-header">
+                        <div>Image</div>
                         <div>Name</div>
                         <div>Phone</div>
-                        <div>Address</div>
-                        <div>Time</div>
+                        <div>Description</div>
                         <div>Option</div>
                     </div>
+
                     {filteredOrders.length === 0 ? (
-                        <div className="no-results">No Homio found</div>
+                        <div className="no-results">No Volunteer found</div>
                     ) : (
                         filteredOrders.map((order, index) => (
                             <div className="table-row" key={index}>
+                                <div data-label="Image"><img src={order.imageUrl} className="skill-table-image" alt="" /></div>
                                 <div data-label="Name">{order.name}</div>
-                                <div data-label="Phone">{order.number}</div>
-                                <div data-label="Address">{order.location}</div>
-                                <div data-label="Time">{order.time}</div>
-                                <div data-label="Delete"> <span onClick={() => setDeleteConfirm(order._id)} className='deleteUser'>Delete</span></div>
+                                <div data-label="Phone">{order.contact}</div>
+                                <div data-label="Description">{order.disc}</div>
+                                <div data-label="Delete"> <span onClick={() => setDeleteConfirm({ _id: order._id, id: order.imageId })} className='deleteUser'>Delete</span></div>
                             </div>
                         ))
                     )}
@@ -90,7 +90,7 @@ const OrderTable = () => {
                 <div className="confirmation-modal">
                     <div className="modal-content">
                         <h3>Confirm Deletion</h3>
-                        <p>Are you sure you want to delete this Homio? This action cannot be undone.</p>
+                        <p>Are you sure you want to delete this Volunteer? This action cannot be undone.</p>
                         <div className="modal-actions">
                             <button
                                 className="btn secondary"
@@ -102,7 +102,7 @@ const OrderTable = () => {
                                 className="btn danger"
                                 onClick={() => handelDelete(deleteConfirm)}
                             >
-                                Delete Homio
+                                Delete Volunteer
                             </button>
                         </div>
                     </div>

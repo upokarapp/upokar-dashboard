@@ -218,15 +218,49 @@ export const searchOrders = async (req, res) => {
 
 export const order = async (req, res) => {
     console.log(req.body);
-    
+
     try {
         const order = new Order(req.body);
         await order.save();
         res.status(201).json(order);
     } catch (error) {
         console.log(error);
-        
+
         res.status(500).json({ message: 'Server error' });
     }
 
 };
+
+
+
+const aggregateOrders = async (req, res) => {
+    const data = await Order.aggregate([
+        {
+            //   $lookup: {
+            //     from: 'products',
+            //     localField: 'pid',
+            //     foreignField: '_id',
+            //     as: 'productDetails'
+            //   },
+
+
+            $lookup: {
+                from: 'products', // ensure this matches your actual collection name
+                let: { productId: { $toObjectId: '$pid' } },
+                pipeline: [
+                    {
+                        $match: {
+                            $expr: { $eq: ['$_id', '$$productId'] }
+                        }
+                    }
+                ],
+                as: 'product'
+            }
+        },
+
+    ]);
+    // console.log(data[0]);
+
+}
+
+aggregateOrders()

@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { getAllCustomer, deleteUser, searchCustomer } from "../../Api";
-import "./showCustomers.css";
+import { getAllGiftOrder, searchGiftOrders, deleteGiftOrder } from "../../Api";
+import "./giftorders.css";
 import Spinner from "../loader"; // Assuming you already have a spinner component
 
 const UserTable = () => {
-    const [users, setUsers] = useState([]);
+    const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true); // Loading state
     const [error, setError] = useState(null); // Error state to handle fetch errors
     const [searchQuery, setSearchQuery] = useState("");
     const [deleteConfirm, setDeleteConfirm] = useState(null)
+
     const fetchData = async () => {
         try {
-            const response = await getAllCustomer();
-            setUsers(response);
+            const response = await getAllGiftOrder();
+            setOrders(response);
         } catch (error) {
             setError("Error fetching data");
         } finally {
@@ -22,16 +23,18 @@ const UserTable = () => {
     const handleDelete = async (id) => {
         setLoading(true);
         try {
-            const response = await deleteUser(id)
+            await deleteGiftOrder(id);
             fetchData();
             alert('User deleted successfully!');
             setLoading(false);
-        } catch (error) {
-            alert('Failed to fetch all admin data');
+        } catch (err) {
+            alert('Failed to delete user');
             setLoading(false);
+            setDeleteConfirm(null);
         } finally {
-            setDeleteConfirm(null); // Close the confirmation modal
+            setDeleteConfirm(null); // Close the confirmation modal after deletion
         }
+
     }
     const handleSearch = async (e) => {
         e.preventDefault();
@@ -42,10 +45,12 @@ const UserTable = () => {
         }
         setLoading(true);
         try {
-            const response = await searchCustomer(searchQuery);
+            const response = await searchGiftOrders(searchQuery);
+            console.log(response);
+            setOrders(response);
             setLoading(false);
-            setUsers(response);
-        } catch (err) {
+        } catch (error) {
+            setError("Error searching products");
             setLoading(false);
         }
     }
@@ -62,7 +67,7 @@ const UserTable = () => {
     }
 
     return (
-        <div className="table-container" id='user-table'>
+        <div className="GO-table-container" id='gift-order-table'>
             {error && <div className="error-message">{error}</div>} {/* Show error message if there's an issue fetching */}
             {!error &&
                 <div className="search-container">
@@ -82,28 +87,36 @@ const UserTable = () => {
                     </form>
                 </div>
             }
-            {users.length === 0 ? (
-                <div className="no-users-message">There are no users available.</div> // Display when no users are found
+            {orders.length === 0 ? (
+                <div className="no-users-message">There are no Order available.</div> // Display when no users are found
             ) : (
-                <table className="user-table">
+                <table className="gift-order-table">
                     <thead>
                         <tr className='table-header'>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Number</th>
-                            <th>Address</th>
+                            <th>Customer Name</th>
+                            <th>Customer Number</th>
+                            <th>Delivery Address</th>
+                            <th>Product Name</th>
+                            <th>Product Price</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                            <th>Requist</th>
                             <th>Options</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map((user) => (
-                            <tr key={user._id}>
-                                <td data-label="Name">{user.name}</td>
-                                <td data-label="Email">{user.email}</td>
-                                <td data-label="Number">{user.number}</td>
-                                <td data-label="Address">{user.address}</td>
+                        {orders.map((order) => (
+                            <tr key={order._id}>
+                                <td data-label="Customer Name">{order.name}</td>
+                                <td data-label="Customer Number">{order.number}</td>
+                                <td data-label="Delivery Address">{order.address}</td>
+                                <td data-label="Product Name">{order.pname}</td>
+                                <td data-label="Product Price">{order.pprice}</td>
+                                <td data-label="Quantity">{order.quantity}</td>
+                                <td data-label="Total Price">{order.totalPrice}</td>
+                                <td data-label="Request">{order.specialRequest}</td>
                                 <td data-label="Options">
-                                    <button onClick={() => setDeleteConfirm(user._id)} className='deleteUser'>Delete</button>
+                                    <button onClick={() => setDeleteConfirm(order._id)} className='deleteUser'>Delete</button>
                                 </td>
                             </tr>
                         ))}
@@ -113,7 +126,7 @@ const UserTable = () => {
             {deleteConfirm && (
                 <div className="confirmation-modal">
                     <div className="modal-content">
-                        <p>Are you sure you want to delete this Customer? This action cannot be undone.</p>
+                        <p>Are you sure you want to delete this Order? This action cannot be undone.</p>
                         <div className="modal-actions">
                             <button
                                 className="btn secondary"
@@ -125,7 +138,7 @@ const UserTable = () => {
                                 className="btn danger"
                                 onClick={() => handleDelete(deleteConfirm)}
                             >
-                                Delete Customer
+                                Delete Order
                             </button>
                         </div>
                     </div>

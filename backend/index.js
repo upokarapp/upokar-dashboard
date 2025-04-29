@@ -13,8 +13,15 @@ import ambulanceRoutes from './routes/ambulance.routes.js';
 import pharmacyRoutes from './routes/pharmacy.routes.js';
 import homioRoutes from './routes/homio.routes.js';
 import animalCareRoutes from './routes/animalCare.routes.js';
-
+import community from "./routes/community.js"
+import kutirShilpo from './routes/kutirShilpo.js';
+import giftRoutes from './routes/gift.routes.js';
+import coaching from './routes/coaching.js';
+import skillAndIT from './routes/skillandit.js';
+import volunteer from './routes/volunteer.routes.js';
 import orderRoutes from './routes/order.routes.js';
+import giftOrderRoutes from './routes/giftOrder.routes.js';
+import kutirOrderRoutes from './routes/kutir.routes.js';
 import bloodDonor from './routes/bloodDonor.routes.js';
 import transportRoutes from './routes/transport.routes.js';
 import cylinderRoutes from './routes/cylinder.routes.js';
@@ -25,6 +32,8 @@ import jobsRoutes from './routes/jobs.routes.js';
 import landf from './routes/landf.routes.js';
 import labor from './routes/labor.routes.js';
 import total from './routes/total.routes.js'
+
+
 dotenv.config();
 connection();
 
@@ -72,8 +81,16 @@ app.use(ambulanceRoutes);
 app.use(pharmacyRoutes);
 app.use(homioRoutes);
 app.use(animalCareRoutes);
-
+app.use(community);
+app.use(kutirShilpo);
+app.use(giftRoutes);
+app.use(coaching);
+app.use(skillAndIT);
+app.use(volunteer)
 app.use(orderRoutes);
+app.use(giftOrderRoutes);
+app.use(kutirOrderRoutes);
+
 app.use(bloodDonor);
 app.use(transportRoutes);
 app.use(cylinderRoutes);

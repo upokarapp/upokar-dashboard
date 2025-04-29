@@ -97,6 +97,25 @@ export const deleteSliderImage = async (req, res) => {
     }
 };
 
+export const addLinkToSlider = async (sliderImageId, linkUrl) => {
+    try {
+        const updated = await SliderImgSchema.findByIdAndUpdate(
+            sliderImageId,
+            { link: linkUrl },        // set the link field
+            { new: true, runValidators: true }
+        );
+        if (!updated) {
+            console.log(`No slider found with _id=${sliderImageId}`);
+            return null;
+        }
+        console.log('Updated slider:', updated);
+        return updated;
+    } catch (err) {
+        console.error('Error updating link:', err);
+        throw err;
+    }
+};
+
 
 // // Upload image handler
 // const uploadImage = async (req, res) => {

@@ -32,7 +32,20 @@ import AddPharmacy from "../components/pharmacy/addPharmacy"
 import AnimalCare from "../components/animalCare/showAnimaleCare"
 import AddAnimal from "../components/animalCare/addAnimalCare"
 import Homeopathy from "../components/homio/showHomio"
-import AddHomeopathy from "../components/homio/addHomio.jsx"
+import AddHomeopathy from "../components/homio/addHomio"
+import AddCommunity from "../components/community/addCommunity"
+import ShowCommunityCenter from "../components/community/showCommunity"
+import AddKutirShilpo from "../components/kutirShilpo/addKutirShilpo"
+import ShowKutirShilpo from "../components/kutirShilpo/showKutirShilpo"
+import AddSkillandit from "../components/skillAndIT/addSkillAndIT"
+import ShowSkillandit from "../components/skillAndIT/showSkillAndIT"
+import AddGifts from "../components/gifts/addGifts"
+import ShowGifts from "../components/gifts/showGifts"
+import Giftorders from "../components/gifts/giftOrder"
+import KutirOrder from "../components/kutirShilpo/kutirOrder";
+import AddVolunteers from "../components/volunteers/addVolunteer";
+import ShowVolunteers from "../components/volunteers/showVolunteer";
+import AddLink from "../components/linkProduct/linkProduct";
 export default function App() {
     const { state, dispatch } = useContext(Context);
     const online = () => {
@@ -53,6 +66,7 @@ export default function App() {
                             <Route path='/' element={<HomeContainer />} />
                             <Route path='/customers' element={<ShowCustomer />} />
                             <Route path='/addProduct' element={<AddProduct />} />
+                            <Route path='/addProductLink' element={<AddLink />} />
                             <Route path='/hospitals' element={<ShowHospitals />} />
                             <Route path='/addHospital' element={<AddHospital />} />
                             <Route path='/ambulances' element={<ShowAmbulance />} />
@@ -63,7 +77,16 @@ export default function App() {
                             <Route path='/addAnimal' element={<AddAnimal />} />
                             <Route path='/homeopathy' element={<Homeopathy />} />
                             <Route path='/addHomeopathy' element={<AddHomeopathy />} />
-
+                            <Route path='/addCommunity' element={<AddCommunity />} />
+                            <Route path='/community-centers' element={<ShowCommunityCenter />} />
+                            <Route path='/addKutirShilpo' element={<AddKutirShilpo />} />
+                            <Route path='/kutirshilpo' element={<ShowKutirShilpo />} />
+                            <Route path='/skillandit' element={<ShowSkillandit />} />
+                            <Route path='/addSkillAndIT' element={<AddSkillandit />} />
+                            <Route path='/gifts' element={<ShowGifts />} />
+                            <Route path='/addGift' element={<AddGifts />} />                            
+                            <Route path='/giftorders' element={<Giftorders />} />                            
+                            <Route path='/kutirorders' element={<KutirOrder />} />
                             <Route path='/products' element={<Product />} />
                             <Route path='/orders' element={<ShowOrder />} />
                             <Route path='/transport' element={<Transport />} />
@@ -75,6 +98,8 @@ export default function App() {
                             <Route path='/jobs' element={<ShowAllJobs />} />
                             <Route path='/addjob' element={<AddJob />} />
                             <Route path='/labors' element={<Labor />} />
+                            <Route path='/volunteers' element={<ShowVolunteers />} />
+                            <Route path='/addVolunteers' element={<AddVolunteers />} />
                             <Route path='/lostpersons' element={<LostPerson />} />
                             <Route path='/admins' element={<AdminsTable />} />
                             <Route path='/createadmin' element={<CreateAdmin />} />

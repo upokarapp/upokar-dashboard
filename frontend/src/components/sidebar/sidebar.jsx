@@ -24,6 +24,11 @@ import LocalPharmacy from '@mui/icons-material/LocalPharmacy';
 import PetsIcon from '@mui/icons-material/Pets';
 import HomeWorkIcon from '@mui/icons-material/HomeWork';
 import GppGoodIcon from '@mui/icons-material/GppGood';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
+import AddLinkIcon from '@mui/icons-material/AddLink';
 import "./sidebar.css";
 
 const Sidebar = () => {
@@ -98,9 +103,27 @@ const Sidebar = () => {
     },
     {
       type: 'link',
+      to: '/addProductLink',
+      icon: <AddLinkIcon className="icon" />,
+      text: 'Add ProductLink',
+    },
+    {
+      type: 'link',
       to: '/orders',
       icon: <ShoppingCartIcon className="icon" />,
       text: 'Orders',
+    },
+    {
+      type: 'link',
+      to: '/giftorders',
+      icon: <LocalMallIcon className="icon" />,
+      text: 'GiftOrders',
+    },
+    {
+      type: 'link',
+      to: '/kutirorders',
+      icon: <ShoppingBasketIcon className="icon" />,
+      text: 'KutirOrders',
     },
     {
       type: 'link',
@@ -167,6 +190,24 @@ const Sidebar = () => {
       to: '/tuitions',
       icon: <InsertChartIcon className="icon" />,
       text: 'Tuitions',
+    },
+    {
+      type: 'link',
+      to: '/skillandit',
+      icon: <AcUnitIcon className="icon" />,
+      text: 'Skill & IT',
+    },
+    {
+      type: 'link',
+      to: '/kutirshilpo',
+      icon: <ShoppingBasketIcon className="icon" />,
+      text: 'Kutir Shilpo',
+    },
+    {
+      type: 'link',
+      to: '/gifts',
+      icon: <CardGiftcardIcon className="icon" />,
+      text: 'Gifts',
     },
     {
       type: 'link',

@@ -14,15 +14,18 @@
     background-color: white;
     z-index: 99999;
     max-height: 100vh;
-    overflow-y: scroll;
+    overflow: scroll;
 }
+
 .sidebar::-webkit-scrollbar {
     width: 4px;
 }
+
 .sidebar::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 10px;
 }
+
 .container {
     flex: 6;
 }
@@ -38,4 +41,28 @@
         border-right: 0.5px solid rgb(230, 227, 227);
         background-color: white;
     }
+
+    .home {
+        display: flex;
+        min-height: 100vh;
+        /* Ensure full viewport height */
+        overflow: hidden;
+        /* Prevent overall page scroll */
+    }
+
+    /* .sidebar {
+    height: 100vh; 
+    overflow-y: auto; 
+    position: sticky;
+    top: 0;
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.container {
+    flex-grow: 1;
+    overflow-y: auto; 
+    height: 100vh; 
+    padding: 20px; 
+} */
 }

@@ -1,34 +1,36 @@
-.table-container {
+.GO-table-container {
     overflow-x: auto;
     margin: 2rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
 
-.user-table {
+.gift-order-table {
     width: 100%;
     border-collapse: collapse;
     background: white;
 }
-.user-table th{
+
+.gift-order-table th {
     background-color: #721c24 !important;
     color: white !important;
-    padding: 1rem;
+    padding: 10px;
     text-align: left;
 }
-.user-table td {
-    padding: 1rem;
+
+.gift-order-table td {
+    padding: 10px;
     text-align: left;
     border-bottom: 1px solid #f0f0f0;
 }
 
-.user-table th {
+.gift-order-table th {
     background-color: #f8f9fa;
     font-weight: 600;
     color: #2d3436;
 }
 
-.user-table tr:hover {
+.gift-order-table tr:hover {
     background-color: #f8f9fa;
 }
 
@@ -41,27 +43,26 @@
     font-size: 0.85rem;
     font-weight: 500;
     text-transform: capitalize;
-    cursor:  pointer !important; 
 }
 
 
 @media (max-width: 768px) {
-    .table-container {
+    .GO-table-container {
 
         margin: 0rem;
         box-shadow: none;
     }
 
-    .user-table {
+    .gift-order-table {
         padding: 0px;
         border: 0;
     }
 
-    .user-table thead {
+    .gift-order-table thead {
         display: none;
     }
 
-    .user-table tr {
+    .gift-order-table tr {
         display: block;
         margin-bottom: 1rem;
         border: 1px solid #f0f0f0;
@@ -69,7 +70,7 @@
         border-bottom: 2px solid #10b981;
     }
 
-    .user-table td {
+    .gift-order-table td {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -78,11 +79,11 @@
         text-align: right;
     }
 
-    .user-table td:last-child {
+    .gift-order-table td:last-child {
         border-bottom: 0;
     }
 
-    .user-table td::before {
+    .gift-order-table td::before {
         content: attr(data-label);
         font-weight: 600;
         color: #2d3436;
@@ -90,11 +91,11 @@
     }
 }
 
-#user-table .search-form {
+#gift-order-table .search-form {
     position: relative;
-  }
-  
-  #user-table .input-group {
+}
+
+#gift-order-table .input-group {
     display: flex;
     gap: 0.5rem;
     align-items: center;
@@ -103,13 +104,13 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     flex-direction: row;
-  }
-  
-  #user-table .input-group:focus-within {
+}
+
+#gift-order-table .input-group:focus-within {
     box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);
-  }
-  
-  #user-table .search-input {
+}
+
+#gift-order-table .search-input {
     flex: 1;
     border: 1px solid gray;
     padding: 1rem;
@@ -117,9 +118,9 @@
     outline: none;
     background: transparent;
     padding-left: 1.5rem;
-  }
-  
-  #user-table .search-button {
+}
+
+#gift-order-table .search-button {
     background: #10b981;
     color: white;
     border: none;
@@ -130,41 +131,42 @@
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-  }
-  
-  #user-table .search-button:hover {
+}
+
+#gift-order-table .search-button:hover {
     background: #059669;
     transform: translateY(-1px);
-  }
-  
-  #user-table .error-message {
+}
+
+#gift-order-table .error-message {
     color: #ef4444;
     font-size: 0.875rem;
     margin-top: 0.5rem;
     text-align: center;
-  }
-  #user-table .no-users-message {
+}
+
+#gift-order-table .no-users-message {
     color: #ef4444;
     font-size: 1.5rem;
     margin-top: 0.5rem;
     text-align: center;
-  }
-  @media (max-width: 768px) {
-    #user-table .input-group {
-      flex-direction: column;
-      padding: 0.75rem;
-      margin-bottom: 0px !important;
+}
+
+@media (max-width: 768px) {
+    #gift-order-table .input-group {
+        flex-direction: column;
+        padding: 0.75rem;
+        margin-bottom: 0px !important;
     }
-  
-    #user-table .search-input {
-      width: 100%;
-      text-align: center;
-      padding: 0.5rem !important;
+
+    #gift-order-table .search-input {
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem !important;
     }
-  
-    #user-table .search-button {
-      width: 100%;
-      padding: 0.5rem;
+
+    #gift-order-table .search-button {
+        width: 100%;
+        padding: 0.5rem;
     }
-  }
-  
+}

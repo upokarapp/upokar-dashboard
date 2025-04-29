@@ -27,17 +27,20 @@ const getProduct = async (req, res) => {
     }
 };
 const searchProduct = async (req, res) => {
-    
+
     try {
         // Extract search parameter from query string
         const { query } = req.body;
 
-        
+
         // Build the filter query.
         // If "search" is provided, use a case-insensitive regex match on the name field.
         let filter = {};
         if (query) {
-            filter.name = { $regex: query, $options: 'i' };
+            filter.$or = [
+                { name: { $regex: query, $options: 'i' } },
+                { category: { $regex: query, $options: 'i' } },
+            ];
         }
 
         // Query the database for products matching the filter
