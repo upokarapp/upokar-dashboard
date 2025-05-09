@@ -81,7 +81,8 @@ const HospitalForm = () => {
       nformData.append('services', JSON.stringify(services));
       nformData.append('image', image.file);
       
-      await axios.post('https://api-upokar.onrender.com/addhospitals', nformData, {
+      // await axios.post('https://api-upokar.onrender.com/addhospitals', nformData, {
+      await axios.post('http://localhost:2000//addhospitals', nformData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 

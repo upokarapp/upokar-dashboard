@@ -43,7 +43,8 @@ const AmbulanceForm = () => {
 
         try {
             // Post the form data to your backend API endpoint for adding an ambulance
-            await axios.post('https://api-upokar.onrender.com/createAmbulance', {name: formData.ambulanceName, number: formData.number, location: formData.location});
+            // await axios.post('https://api-upokar.onrender.com/createAmbulance', {name: formData.ambulanceName, number: formData.number, location: formData.location});
+            await axios.post('http://localhost:2000//createAmbulance', {name: formData.ambulanceName, number: formData.number, location: formData.location});
             // Clear the form after a successful submission
             setFormData({ ambulanceName: '', number: '', location: '' });
             alert('Ambulance added successfully!');

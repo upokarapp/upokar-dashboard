@@ -58,9 +58,7 @@ const DoughnutChart = () => {
         const fetchData = async () => {
             try {
                 const response = await getTotalCounts();
-                console.log(response);
-                
-                if (response) { // Update only if API call is successful and returns a response
+                if (response) {
                     setData({
                         totalUsers: response.totalUsers, totalProducts: response.totalProducts, totalOrders: response.totalOrders, totalAdmins: response.totalAdmins
                     });
