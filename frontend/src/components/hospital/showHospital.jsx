@@ -52,7 +52,7 @@ const OrderTable = () => {
                 <div className="search-container">
                     <input
                         type="text"
-                        placeholder="Search orders..."
+                        placeholder="Search hospitals..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="search-input"
@@ -92,7 +92,7 @@ const OrderTable = () => {
                 <div className="confirmation-modal">
                     <div className="modal-content">
                         <h3>Confirm Deletion</h3>
-                        <p>Are you sure you want to delete this Order? This action cannot be undone.</p>
+                        <p>Are you sure you want to delete this hospital? This action cannot be undone.</p>
                         <div className="modal-actions">
                             <button
                                 className="btn secondary"
@@ -104,7 +104,7 @@ const OrderTable = () => {
                                 className="btn danger"
                                 onClick={() => handelDelete(deleteConfirm)}
                             >
-                                Delete Order
+                                Delete Hospital
                             </button>
                         </div>
                     </div>
