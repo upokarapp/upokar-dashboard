@@ -89,7 +89,7 @@ const AddProduct = () => {
         formData.append(`images`, image.file);
       });
 
-      const response = await axios.post('http://localhost:2000/api/products', formData, {
+      const response = await axios.post('https://upokar-dashboard-api.onrender.com/api/products', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
