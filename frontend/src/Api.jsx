@@ -8,7 +8,7 @@ const config = {
 };
 
 // const URL = 'https://api-upokar.onrender.com';
-const URL = 'http://localhost:2000';
+const URL = 'https://upokar-dashboard-api.onrender.com';
 
 // ---------------- Customer api ------------------------------------
 const getAllCustomer = async (id) => {
