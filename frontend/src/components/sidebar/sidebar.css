@@ -106,3 +106,10 @@ hr {
     background-color: darkblue;
 }
 
+
+@media only screen and (max-width: 600px) {
+    #sidebar {
+        max-width: 100dvh;
+        overflow: scroll;
+    }
+}
