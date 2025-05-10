@@ -60,7 +60,7 @@ const CommunityCenterForm = () => {
             form.append('description', formData.description);
             form.append('image', image.file);
 
-            await axios.post('http://localhost:2000/addcommunity', form, {
+            await axios.post('https://upokar-dashboard-api.onrender.com/addcommunity', form, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
 
