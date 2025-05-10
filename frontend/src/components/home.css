@@ -13,7 +13,6 @@
     border-right: 0.5px solid rgb(230, 227, 227);
     background-color: white;
     z-index: 99999;
-    max-height: 100vh;
     overflow: scroll;
 }
 
@@ -47,6 +46,7 @@
         min-height: 100vh;
         /* Ensure full viewport height */
         overflow: hidden;
+        background-color: #fff;
         /* Prevent overall page scroll */
     }
 
