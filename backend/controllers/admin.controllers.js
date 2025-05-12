@@ -25,9 +25,7 @@ const login = async (req, res) => {
                 httpOnly: true,
                 sameSite: 'lax',
                 secure: process.env.NODE_ENV === 'production', // Only secure in production
-                sameSite: 'none',
-                secure: true,
-                path: '/'
+                secure: true
             })
             .status(200)
             .json({
