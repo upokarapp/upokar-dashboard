@@ -7,7 +7,7 @@ const config = {
 };
 axios.defaults.withCredentials = true; 
 // const URL = 'https://api-upokar.onrender.com';
-const URL = 'http://192.168.0.196:2000';
+const URL = 'https://upokar-dashboard-api.onrender.com';
 
 // ---------------- Customer api ------------------------------------
 const getAllCustomer = async (id) => {
