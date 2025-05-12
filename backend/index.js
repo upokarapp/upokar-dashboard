@@ -56,13 +56,12 @@ const app = express();
 
 const corsOptions = {
   origin: (origin, callback) => {
-    if (!origin || origin) {
-      callback(null, true); // Allow all origins
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
+    // allow requests with no origin (e.g. mobile apps, curl)
+    if (!origin) return callback(null, true);
+    // reflect the origin back
+    callback(null, origin);
   },
-  credentials: true, // Allow credentials (cookies)
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
