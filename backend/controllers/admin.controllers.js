@@ -25,7 +25,7 @@ const login = async (req, res) => {
            httpOnly: true, // Prevent client-side access to the cookie
            secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
-  });
+  })
             .status(200)
             .json({
                 name: admin.name,
