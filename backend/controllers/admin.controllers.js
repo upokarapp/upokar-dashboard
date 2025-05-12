@@ -21,13 +21,7 @@ const login = async (req, res) => {
             { expiresIn: "30d" }
         );
        res
-          .cookie('access_token', token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',          // required for cross-site cookies
-            sameSite: 'lax',
-              path: '/',
-              maxAge: 30 * 24 * 60 * 60 * 1000
-  })
+          .cookie('access_token', token)
             .status(200)
             .json({
                 name: admin.name,
