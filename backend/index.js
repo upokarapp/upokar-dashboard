@@ -40,18 +40,21 @@ connection();
 // Initialize express app
 const app = express();
 app.set('trust proxy', 1);
+
+
+
+
+const allowedOrigins = [ 'https://upokar-dashboard.onrender.com'];
 const corsOptions = {
   origin: (origin, callback) => {
-    if (!origin || origin) {
-      callback(null, true); // Allow all origins
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, origin || true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true, // Allow credentials (cookies)
-  exposedHeaders: ['Set-Cookie']
+  credentials: true
 };
-
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
