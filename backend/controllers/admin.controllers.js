@@ -26,7 +26,7 @@ const login = async (req, res) => {
             httpOnly: true,              // inaccessible to JS (XSS protection)
             secure: true,                // only over HTTPS
             sameSite: 'none',            // allow cross-site
-            maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
+            maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
                 path: '/'
             })
             .status(200)
