@@ -39,24 +39,14 @@ connection();
 
 // Initialize express app
 const app = express();
-const corsOptions = {
+app.set('trust proxy', 1);
+app.use(cors({
   origin: (origin, callback) => {
-    if (!origin) {
-      // Allow mobile apps or other requests with no origin
-      callback(null, true);
-    } else {
-      // Echo back the request origin so that the Access-Control-Allow-Origin header
-      // is set to the specific requesting origin (required when using credentials)
-      callback(null, origin);
-    }
+    if (!origin) return callback(null, true);    // allow mobile/no-origin
+    return callback(null, origin);               // echo back requester
   },
   credentials: true,
-};
-
-
-
-app.use(cors(corsOptions));
-app.set('trust proxy', 1);
+}));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
