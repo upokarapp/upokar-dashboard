@@ -24,7 +24,7 @@ const login = async (req, res) => {
             .cookie("access_token", token, {
                 httpOnly: true,
                 sameSite: 'none',
-                secure: true,
+                secure: process.env.NODE_ENV === 'production', // Only secure in production                
                 path: '/'
             })
             .status(200)
