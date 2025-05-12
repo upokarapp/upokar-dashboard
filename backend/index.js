@@ -44,11 +44,11 @@ app.set('trust proxy', 1);
 
 
 
-const allowedOrigins = [ 'https://upokar-dashboard.onrender.com'];
+
 const corsOptions = {
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, origin || true);
+    if (!origin || origin)) {
+      callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
