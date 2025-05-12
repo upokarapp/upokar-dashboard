@@ -51,24 +51,8 @@ const whitelist = [
 ];
 
 const corsOptions = {
-  origin: (origin, callback) => {
-    // 1. Allow requests with no Origin (e.g. mobile clients, Postman)
-    if (!origin) {
-      return callback(null, true);
-    }
-    if(origin)
-    {
-      console.log("origin is :- ",origin);
-    }
-    // 2. If the incoming origin is in our whitelist, echo it back
-    if (whitelist.includes(origin)) {
-      console.log("origin is include");
-      return callback(null, origin);
-    }
-    // 3. Otherwise, block it
-    callback(new Error('CORS policy: Origin not allowed'));
-  },
-  credentials: true   // sets Access-Control-Allow-Credentials: true
+  origin: "https://upokar-dashboard.onrender.com",
+  credentials: true   
 };
 app.use(cors(corsOptions));
 
