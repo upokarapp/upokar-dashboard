@@ -5,7 +5,7 @@ const config = {
     },
     withCredentials: true
 };
-
+axios.defaults.withCredentials = true; 
 // const URL = 'https://api-upokar.onrender.com';
 const URL = 'https://upokar-dashboard-api.onrender.com';
 
