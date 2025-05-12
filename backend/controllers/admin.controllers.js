@@ -21,11 +21,11 @@ const login = async (req, res) => {
             { expiresIn: "30d" }
         );
        res
-          .cookie("access_token", token, {
-            httpOnly: true,
-            secure: false,  // only true on HTTPS
-            sameSite: 'lax',                               // allow cross-site
-          })
+          .cookie('access_token', token, {
+           httpOnly: true, // Prevent client-side access to the cookie
+           secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+           sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
+  });
             .status(200)
             .json({
                 name: admin.name,
