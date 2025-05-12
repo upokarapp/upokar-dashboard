@@ -20,13 +20,20 @@ const login = async (req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: "30d" }
         );
-       res
-          .cookie('access_token', token, {
+
+        res
+            .cookie("access_token", token, {
             httpOnly: true,              // inaccessible to JS (XSS protection)
             secure: true,                // only over HTTPS
             sameSite: 'none',            // allow cross-site
             maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
-  })
+                path: '/'
+            })
+            .status(200)
+            .json({
+                name: admin.name,
+                type: admin.type,
+        });
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
     }
