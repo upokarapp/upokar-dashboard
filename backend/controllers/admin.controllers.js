@@ -22,11 +22,11 @@ const login = async (req, res) => {
         );
         res
             .cookie("access_token", token, {
-                httpOnly: true,
-                sameSite: 'none',
-                secure: process.env.NODE_ENV === 'production', // Only secure in production                
-                path: '/'
-            })
+    httpOnly: true,
+    secure: req.secure,
+    sameSite: req.secure ? 'none' : 'lax',
+    path: '/'
+})
             .status(200)
             .json({
                 name: admin.name,
