@@ -3,7 +3,8 @@ const config = {
     headers: {
         'Content-Type': 'application/json'
     },
-    withCredentials: true
+    withCredentials: true,
+    credentials: 'include',
 };
 
 // const URL = 'https://api-upokar.onrender.com';
