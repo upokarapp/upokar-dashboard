@@ -41,7 +41,9 @@ connection();
 const app = express();
 app.set('trust proxy', 1);
 
-
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 const whitelist = [
@@ -70,9 +72,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-app.use(cookieParser());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
 
 
 // Additional routes
