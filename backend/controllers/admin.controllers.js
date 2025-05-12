@@ -20,13 +20,13 @@ const login = async (req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: "30d" }
         );
-        res
-            .cookie("access_token", token, {
-    httpOnly: true,
-    secure: req.secure,
-    sameSite: req.secure ? 'none' : 'lax',
-    path: '/'
-})
+       res
+          .cookie("access_token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',  // only true on HTTPS
+            sameSite: 'none',                               // allow cross-site
+            path: '/',
+          })
             .status(200)
             .json({
                 name: admin.name,
