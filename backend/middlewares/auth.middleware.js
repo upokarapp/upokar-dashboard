@@ -2,6 +2,9 @@ import jwt from 'jsonwebtoken';
 
 const authenticateToken = (req, res, next) => {
   const token = req.cookies.access_token;
+  const requestOrigin = req.headers.origin;
+
+  console.log("Token is :- ",token , " requestOrigin is :- ", requestOrigin);
   
   if (!token) return res.status(401).json({ message: 'You are not authenticated!' });
 
