@@ -47,12 +47,8 @@ app.set('trust proxy', 1);
 
 const corsOptions = {
   origin: (origin, callback) => {
-    if(origin)
-    {
-      console.log("origin is :-  ",origin);
-    }
     if (!origin || origin) {
-      callback(null, true);
+      callback(null, origin || true );
     } else {
       callback(new Error('Not allowed by CORS'));
     }
