@@ -23,8 +23,9 @@ const login = async (req, res) => {
        res
           .cookie('access_token', token, {
             httpOnly: true,
-            secure: true,           // required for cross-site cookies
-            sameSite: 'none'
+            secure: process.env.NODE_ENV === 'production',          // required for cross-site cookies
+            sameSite: 'lax',
+              path: '/'
   })
             .status(200)
             .json({
