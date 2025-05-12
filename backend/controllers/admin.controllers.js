@@ -22,9 +22,9 @@ const login = async (req, res) => {
         );
        res
           .cookie('access_token', token, {
-           httpOnly: true, // Prevent client-side access to the cookie
-           secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-           sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
+            httpOnly: true,
+            secure: true,           // required for cross-site cookies
+            sameSite: 'none'
   })
             .status(200)
             .json({
