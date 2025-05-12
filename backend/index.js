@@ -54,6 +54,10 @@ const corsOptions = {
     if (!origin) {
       return callback(null, true);
     }
+    if(origin)
+    {
+      console.log(origin);
+    }
     // 2. If the incoming origin is in our whitelist, echo it back
     if (whitelist.includes(origin)) {
       return callback(null, origin);
