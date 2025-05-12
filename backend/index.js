@@ -44,18 +44,27 @@ app.set('trust proxy', 1);
 
 
 
+const whitelist = [
+  'https://upokar-dashboard.onrender.com',
+];
 
 const corsOptions = {
   origin: (origin, callback) => {
-    if (!origin || origin) {
-      callback(null, origin || true );
-    } else {
-      callback(new Error('Not allowed by CORS'));
+    // 1. Allow requests with no Origin (e.g. mobile clients, Postman)
+    if (!origin) {
+      return callback(null, true);
     }
+    // 2. If the incoming origin is in our whitelist, echo it back
+    if (whitelist.includes(origin)) {
+      return callback(null, origin);
+    }
+    // 3. Otherwise, block it
+    callback(new Error('CORS policy: Origin not allowed'));
   },
-  credentials: true
+  credentials: true   // sets Access-Control-Allow-Credentials: true
 };
 app.use(cors(corsOptions));
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
