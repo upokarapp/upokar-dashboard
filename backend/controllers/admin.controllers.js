@@ -23,9 +23,8 @@ const login = async (req, res) => {
        res
           .cookie("access_token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',  // only true on HTTPS
+            secure: false,  // only true on HTTPS
             sameSite: 'lax',                               // allow cross-site
-            path: '/',
           })
             .status(200)
             .json({
