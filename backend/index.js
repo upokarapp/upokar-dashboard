@@ -56,15 +56,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-const whitelist = [
-  'https://upokar-dashboard.onrender.com',
-];
 
-const corsOptions = {
-  origin: "https://upokar-dashboard.onrender.com",
-  credentials: true   
-};
-app.use(cors(corsOptions));
 
 
 
