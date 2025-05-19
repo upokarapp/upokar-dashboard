@@ -106,9 +106,17 @@ hr {
     background-color: darkblue;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0e5604b2bfb8f975f9d0b661c1077b38b54eaaf1
 @media only screen and (max-width: 600px) {
     #sidebar {
         max-width: 100dvh;
         overflow: scroll;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0e5604b2bfb8f975f9d0b661c1077b38b54eaaf1

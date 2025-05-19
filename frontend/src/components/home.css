@@ -9,11 +9,14 @@
     left: 0;
     max-width: 300px;
     flex: 1;
-    min-height: 100vh;
+    max-height: 100vh;
     border-right: 0.5px solid rgb(230, 227, 227);
     background-color: white;
     z-index: 99999;
+<<<<<<< HEAD
     /* max-height: 100vh; */
+=======
+>>>>>>> 0e5604b2bfb8f975f9d0b661c1077b38b54eaaf1
     overflow: scroll;
 }
 
