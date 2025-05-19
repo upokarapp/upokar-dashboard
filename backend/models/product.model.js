@@ -5,7 +5,8 @@ const productSchema = new mongoose.Schema({
     description: { type: String, required: true },
     price: { type: Number, required: true, min: 0 },
     category: { type: String, required: true },
-    sellerId: { type: String, required: true, default: "admin" },  // Default value set to 'admin'
+    seller: { type: String, required: true, default: "admin" },  // Default value set to 'admin'
+    contact: { type: String, required: true, default: "01600-190821" },  // Default value set to 'admin'
     images: [
         {
             fileId: { type: String, required: true }, // Store fileId for deletion

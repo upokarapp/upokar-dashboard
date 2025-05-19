@@ -5,11 +5,11 @@ import "./homeContainer.css";
 export default () => {
     return (
         <div className="maincontainer">
-            <div className="graph">
-                <Graph />
-            </div>
             <div className="widgets">
                 <Widget />
+            </div>
+            <div className="graph">
+                <Graph />
             </div>
         </div>
     )

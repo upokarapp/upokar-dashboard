@@ -7,8 +7,10 @@ const config = {
     credentials: 'include',
 };
 
-// const URL = 'https://api-upokar.onrender.com';
-const URL = 'http://localhost:2000';
+
+
+// const URL = 'http://localhost:2000';
+const URL = 'https://upokar-dashboard-api.onrender.com';
 
 // ---------------- Customer api ------------------------------------
 const getAllCustomer = async (id) => {
@@ -149,6 +151,58 @@ const deleteKutirOrder = async (id) => {
         return response.data;
     } catch (error) {
         throw new Error('Failed to delete order');
+    }
+}
+
+// ---------------- Grocery Order api ------------------------------------
+
+
+const getAllGroceryOrders = async (page = 1, limit = 1) => {
+    try {
+        const response = await axios.get(
+            `${URL}/getAllGroceryOrders?page=${page}&limit=${limit}`,
+            config
+        );
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all orders');
+    }
+};
+const searchGroceryOrders = async (search = "") => {
+
+    try {
+        const response = await axios.post(`${URL}/searchGroceryOrders`, { query: search }, config);
+        return response.data;
+    } catch (error) {
+        console.error('Error searching for products:', error);
+        throw error;
+    }
+}
+
+const getGroceryOrderById = async (id) => {
+    try {
+        const response = await axios.get(`${URL}/getGroceryOrder/${id}`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch order');
+    }
+}
+
+const deleteGroceryOrder = async (id) => {
+    try {
+        const response = await axios.delete(`${URL}/deleteGroceryOrder/${id}`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to delete order');
+    }
+}
+
+const updateOrderStatus = async (id, status) => {
+    try {
+        const response = await axios.put(`${URL}/updateOrderStatus/${id}`, { status }, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to update order status');
     }
 }
 // ---------------- Transport api ------------------------------------
@@ -296,6 +350,77 @@ const deletehospitals = async (data) => {
     }
 }
 
+// ---------------- Daignostic api ------------------------------------
+const getAllDaignostic = async () => {
+    try {
+        const response = await axios.get(`${URL}/getAllDiagnostic`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
+
+const getAllDiagnosticID = async () => {
+    try {
+        const response = await axios.get(`${URL}/getAllDiagnosticID`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
+
+const deleteDiagnostic = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/deleteDiagnostic`, data, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
+
+const getAllDoctors = async () => {
+    try {
+        const response = await axios.get(`${URL}/getAllDoctors`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
+const addDoctor = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/addDoctor`, data, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
+const deleteDoctor = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/deleteDoctor`, data, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
+// ---------------- Blood api ------------------------------------
+
+
+const getAllDonor = async () => {
+    try {
+        const response = await axios.get(`${URL}/getAllDonor`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all blood donor');
+    }
+}
+const deleteDonor = async (id) => {
+    try {
+        const response = await axios.delete(`${URL}/deleteDonor/${id}`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
 // ---------------- Ambulance api ------------------------------------
 const getAllAmbulance = async () => {
     try {
@@ -440,6 +565,44 @@ const deleteSliderImage = async (data) => {
         throw new Error('Failed to fetch all admin data');
     }
 }
+// ---------------- SliderGrocaryImage api ------------------------------------
+
+
+const getAllGrocarySliderImages = async () => {
+    try {
+        const response = await axios.get(`${URL}/getAllGrocarySliderImages`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
+const createGrocarySliderImage = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/slideGrocaryImages/upload`, data)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
+
+const updateGrocarySliderImage = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/slideGrocaryImages/update`, data)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
+
+const deleteGrocarySliderImage = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/deleteGrocarySliderImage`, data)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
+
 
 // ---------------- Community api ------------------------------------
 
@@ -731,6 +894,12 @@ export {
     searchKutirOrders,
     deleteKutirOrder,
 
+    // Grocery-Order-related functions
+    getAllGroceryOrders,
+    searchGroceryOrders,
+    getGroceryOrderById,
+    deleteGroceryOrder,
+    updateOrderStatus,
     // Transport-related functions
     getAllCarOrder,
     getAllBusOrder,
@@ -757,6 +926,19 @@ export {
     getAllHospitals,
     deletehospitals,
 
+    // Diagnostic-related functions
+
+    getAllDaignostic,
+    getAllDiagnosticID,
+    deleteDiagnostic,
+    getAllDoctors,
+    deleteDoctor,
+    addDoctor,
+
+    // Blood-related functions
+
+    getAllDonor,
+    deleteDonor,
     // Ambulance-related functions
 
     getAllAmbulance,
@@ -783,6 +965,12 @@ export {
     createSliderImage,
     updateSliderImage,
     deleteSliderImage,
+
+    // SliderGrocartImage-related functions
+    getAllGrocarySliderImages,
+    createGrocarySliderImage,
+    updateGrocarySliderImage,
+    deleteGrocarySliderImage,
 
     // Community-related functions
 
@@ -813,7 +1001,7 @@ export {
     // Volunteer-related functions
     getAllVolunteer,
     deleteVolunteer,
-    
+
     // Job-related functions
     createJob,
     getAllJobs,

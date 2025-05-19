@@ -1,18 +1,19 @@
 import User from '../models/user.model.js';
 
 const signup = async (req, res) => {
-
     try {
         const { name, email, number, address, password } = req.body;
 
         const existingUser = await User.findOne({ $or: [{ email }, { number }] });
         if (existingUser) {
-            return res.status(400).json({ message: 'User already exists with this email or number' });
+            return res.status(400).json({ message: 'দুঃখিত এই ইমেইল অথবা মোবাইল নম্বর দিয়ে ইতিমধ্যে অ্যাকাউন্ট করা আছে' });
         }
 
         const user = await User.create({ name, email, number, address, password });
         res.status(201).json(user);
     } catch (error) {
+        console.log(error);
+        
         res.status(500).json({ message: 'Server error' });
     }
 };
@@ -81,7 +82,7 @@ const deleteUser = async (req, res) => {
 const getAllUsers = async (req, res) => {
     try {
         // Query the database to find all users
-        const users = await User.find();  // This will return all users
+        const users = await User.find().sort({ _id: -1 });;  // This will return all users
 
         // Check if no users are found
         if (users.length === 0) {

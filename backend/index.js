@@ -32,41 +32,24 @@ import jobsRoutes from './routes/jobs.routes.js';
 import landf from './routes/landf.routes.js';
 import labor from './routes/labor.routes.js';
 import total from './routes/total.routes.js'
-
+import diagnosticRoutes from './routes/diagnostic.js';
+import sliderGrocary from "./routes/sliderGrocary.routes.js"
+import groceryOrderRoutes from "./routes/groceryOrder.routes.js"
 
 dotenv.config();
 connection();
 
 // Initialize express app
 const app = express();
-// const corsOptions = {
-//   origin: (origin, callback) => {
-//     if (!origin) {
-//       // Allow mobile apps or other requests with no origin
-//       callback(null, true);
-//     } else {
-//       // Echo back the request origin so that the Access-Control-Allow-Origin header
-//       // is set to the specific requesting origin (required when using credentials)
-//       callback(null, origin);
-//     }
-//   },
-//   credentials: true,
-// };
-
-
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (!origin || origin) {
-      callback(null, true); // Allow all origins
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true, // Allow credentials (cookies)
+  origin: "https://upokar-dashboard.onrender.com",
+  credentials: true,
+  origin: true
 };
-
 app.use(cors(corsOptions));
 
+
+app.set('trust proxy', 1);
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -77,6 +60,7 @@ app.use(userRouter);
 app.use(adminRouter);
 app.use(productRoutes);
 app.use(hospitalRoutes);
+app.use(diagnosticRoutes);
 app.use(ambulanceRoutes);
 app.use(pharmacyRoutes);
 app.use(homioRoutes);
@@ -90,7 +74,6 @@ app.use(volunteer)
 app.use(orderRoutes);
 app.use(giftOrderRoutes);
 app.use(kutirOrderRoutes);
-
 app.use(bloodDonor);
 app.use(transportRoutes);
 app.use(cylinderRoutes);
@@ -101,6 +84,10 @@ app.use(jobsRoutes);
 app.use(labor);
 app.use(landf);
 app.use(total);
+app.use(sliderGrocary);
+app.use(groceryOrderRoutes);
+
+
 app.use('/api', fileRoutes);
 // Basic root route
 app.get('/', (req, res) => {

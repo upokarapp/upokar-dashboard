@@ -177,7 +177,7 @@ const AddProduct = () => {
 
             // Make the API call
             // Replace with your actual API endpoint
-            const response = await axios.post('http://localhost:2000/api/linkProducts', formData, {
+            const response = await axios.post('https://upokar-dashboard-api.onrender.com/api/linkProducts', formData, {
                 headers: {
                     // Content-Type is automatically set to 'multipart/form-data' by axios when using FormData
                 }

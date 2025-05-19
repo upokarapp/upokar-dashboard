@@ -29,6 +29,11 @@ import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import AddLinkIcon from '@mui/icons-material/AddLink';
+import MedicalServicesIcon from '@mui/icons-material/MedicalServices'; // For Diagnostic
+import PersonIcon from '@mui/icons-material/Person';
+import BloodtypeIcon from '@mui/icons-material/Bloodtype';
+import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
+
 import "./sidebar.css";
 
 const Sidebar = () => {
@@ -127,9 +132,33 @@ const Sidebar = () => {
     },
     {
       type: 'link',
+      to: '/groceryorders',
+      icon: <AddShoppingCart className="icon" />,
+      text: 'GroceryOrders',
+    },
+    {
+      type: 'link',
       to: '/hospitals',
       icon: <LocalHospital className="icon" />,
       text: 'Hospitals',
+    },
+    {
+      type: 'link',
+      to: '/diagnostics',
+      icon: <MedicalServicesIcon className="icon" />,
+      text: 'Diagnostics',
+    },
+    {
+      type: 'link',
+      to: '/doctors',
+      icon: <PersonIcon className="icon" />,
+      text: 'Doctors',
+    },
+    {
+      type: 'link',
+      to: '/bloodDonors',
+      icon: <BloodtypeIcon className="icon" />,
+      text: 'Blood Bonors',
     },
     {
       type: 'link',
@@ -178,6 +207,12 @@ const Sidebar = () => {
       to: '/images',
       icon: <PhotoIcon className="icon" />,
       text: 'Images',
+    },
+    {
+      type: 'link',
+      to: '/gimages',
+      icon: <PhotoIcon className="icon" />,
+      text: 'GImages',
     },
     {
       type: 'link',

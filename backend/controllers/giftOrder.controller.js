@@ -47,7 +47,7 @@ export const getAllGiftOrders = async (req, res) => {
             {
                 $project: {
                     _id: 1,
-                    pname: '$product.name',
+                    pname: '$pname',
                     productImage: '$product.imageUrl',
                     pprice: '$pprice',
                     quantity: 1,

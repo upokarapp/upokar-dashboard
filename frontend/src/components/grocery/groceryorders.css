@@ -1,0 +1,263 @@
+.grocery-table-container {
+    overflow-x: auto;
+    margin: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.grocery-order-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.grocery-order-table th {
+    background-color: #721c24 !important;
+    color: white !important;
+    padding: 10px;
+    text-align: left;
+}
+
+.grocery-order-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.grocery-order-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #2d3436;
+}
+
+.grocery-order-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+
+.deleteUser {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+
+@media (max-width: 768px) {
+    .grocery-table-container {
+
+        margin: 0rem;
+        box-shadow: none;
+    }
+
+    .grocery-order-table {
+        padding: 0px;
+        border: 0;
+    }
+
+    .grocery-order-table thead {
+        display: none;
+    }
+
+    .grocery-order-table tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #f0f0f0;
+        border-radius: 8px;
+        border-bottom: 2px solid #10b981;
+    }
+
+    .grocery-order-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid #f0f0f0;
+        text-align: right;
+    }
+
+    .grocery-order-table td:last-child {
+        border-bottom: 0;
+    }
+
+    .grocery-order-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #2d3436;
+        margin-right: 1rem;
+    }
+}
+
+#grocery-order-table .search-form {
+    position: relative;
+}
+
+#grocery-order-table .input-group {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    background: white;
+    padding: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    flex-direction: row;
+}
+
+#grocery-order-table .input-group:focus-within {
+    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);
+}
+
+#grocery-order-table .search-input {
+    flex: 1;
+    border: 1px solid gray;
+    padding: 1rem;
+    font-size: 1rem;
+    outline: none;
+    background: transparent;
+    padding-left: 1.5rem;
+}
+
+#grocery-order-table .search-button {
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#grocery-order-table .search-button:hover {
+    background: #059669;
+    transform: translateY(-1px);
+}
+
+#grocery-order-table .error-message {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+#grocery-order-table .no-users-message {
+    color: #ef4444;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    #grocery-order-table .input-group {
+        flex-direction: column;
+        padding: 0.75rem;
+        margin-bottom: 0px !important;
+    }
+
+    #grocery-order-table .search-input {
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem !important;
+    }
+
+    #grocery-order-table .search-button {
+        width: 100%;
+        padding: 0.5rem;
+    }
+}
+
+/* Add to groceryorders.css */
+.status-pending {
+    color: #856404;
+    background-color: #fff3cd;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.status-delivered {
+    color: #155724;
+    background-color: #d4edda;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.details-button {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.confirmation-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: flex-end;
+}
+
+
+/* Pagination */
+.pagination-container {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.pagination-container button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.pagination-container button:hover:not(:disabled) {
+    background: #10b981;
+    color: white;
+    border-color: #10b981;
+}
+
+.pagination-container button:disabled {
+    background: #f0f0f0;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+.active-page {
+    background: #10b981 !important;
+    color: white !important;
+    border-color: #10b981 !important;
+}

@@ -27,32 +27,33 @@ const getProduct = async (req, res) => {
     }
 };
 const searchProduct = async (req, res) => {
+  try {
+    const { query } = req.body;
+    let filter = {};
 
-    try {
-        // Extract search parameter from query string
-        const { query } = req.body;
+    if (query) {
+      // Build an $or array for the text fields only
+      const orClauses = [
+        { name:     { $regex: query, $options: 'i' } },
+        { category: { $regex: query, $options: 'i' } },
+        { seller:   { $regex: query, $options: 'i' } },
+        { contact: { $regex: query, $options: 'i' } }, // note renamed field
+      ];
 
+      // If the query is purely numeric, also match price exactly
+      if (!isNaN(query)) {
+        orClauses.push({ price: Number(query) });
+      }
 
-        // Build the filter query.
-        // If "search" is provided, use a case-insensitive regex match on the name field.
-        let filter = {};
-        if (query) {
-            filter.$or = [
-                { name: { $regex: query, $options: 'i' } },
-                { category: { $regex: query, $options: 'i' } },
-            ];
-        }
-
-        // Query the database for products matching the filter
-        const products = await Product.find(filter);
-
-        // Send back the products data
-        res.status(200).json(products);
-    } catch (error) {
-        // Handle any errors that occur during the query
-        console.error("Error fetching products:", error);
-        res.status(500).json(error.message);
+      filter.$or = orClauses;
     }
+
+    const products = await Product.find(filter);
+    res.status(200).json(products);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).json({ error: error.message });
+  }
 };
 const deleteProduct = async (req, res) => {
     const id = req.params.id;

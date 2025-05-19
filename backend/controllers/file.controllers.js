@@ -4,7 +4,7 @@ import { addLinkToSlider } from '../controllers/SliderImg.js';
 // Controller to add a product with images.
 export const addProduct = async (req, res) => {
   try {
-    const { name, description, price, category } = req.body;
+    const { name, description, price, category, seller, contact } = req.body;
     if (!name || !description || !price || !category) {
       return res.status(400).json({ message: 'All fields are required' });
     }
@@ -23,7 +23,8 @@ export const addProduct = async (req, res) => {
       description,
       price: parseFloat(price),
       category,
-      sellerId: req.body.sellerId || 'admin',
+      seller: seller || 'Admin',
+      contact: contact || '01600-190821',
       images: imageObjects,
     });
     await product.save();

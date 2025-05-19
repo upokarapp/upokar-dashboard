@@ -17,6 +17,7 @@ import Transport from "./transport/showTransport"
 import GasPrice from "./gasPrice"
 import Cylinder from "./cylinder/showCylinder"
 import ShowImage from "../components/Cimages/showImages"
+import ShowGrocaryImage from "../components/Cgimages/showImages.jsx"
 import ShowTuitions from "../components/tuitions/showTuitions"
 import AddTuition from "../components/tuitions/addTuition"
 import ShowAllJobs from "../components/jobs/showAlljobs"
@@ -46,6 +47,13 @@ import KutirOrder from "../components/kutirShilpo/kutirOrder";
 import AddVolunteers from "../components/volunteers/addVolunteer";
 import ShowVolunteers from "../components/volunteers/showVolunteer";
 import AddLink from "../components/linkProduct/linkProduct";
+import AddDiagnostic from "../components/diagnostic/addDiagnostic";
+import ShowDiagnostic from "../components/diagnostic/showDiagnostic";
+import AddDoctor from "../components/diagnostic/addDoctor.jsx";
+import Doctors from "../components/diagnostic/doctors";
+import BloodDonners from "../components/blood donors/showBloodDonors"
+import Groceryorders from "../components/grocery/showGroceryOrder"
+import GroceryorderDetails from "../components/grocery/groceryOrderDetails"
 export default function App() {
     const { state, dispatch } = useContext(Context);
     const online = () => {
@@ -69,6 +77,11 @@ export default function App() {
                             <Route path='/addProductLink' element={<AddLink />} />
                             <Route path='/hospitals' element={<ShowHospitals />} />
                             <Route path='/addHospital' element={<AddHospital />} />
+                            <Route path='/diagnostics' element={<ShowDiagnostic />} />
+                            <Route path='/addDiagnostic' element={<AddDiagnostic />} />
+                            <Route path='/doctors' element={<Doctors />} />
+                            <Route path='/addDoctor' element={<AddDoctor />} />
+                            <Route path="/bloodDonors" element={<BloodDonners />} />
                             <Route path='/ambulances' element={<ShowAmbulance />} />
                             <Route path='/addAmbulance' element={<AddAmbulance />} />
                             <Route path='/pharmacies' element={<ShowPharmacy />} />
@@ -84,15 +97,18 @@ export default function App() {
                             <Route path='/skillandit' element={<ShowSkillandit />} />
                             <Route path='/addSkillAndIT' element={<AddSkillandit />} />
                             <Route path='/gifts' element={<ShowGifts />} />
-                            <Route path='/addGift' element={<AddGifts />} />                            
-                            <Route path='/giftorders' element={<Giftorders />} />                            
+                            <Route path='/addGift' element={<AddGifts />} />
+                            <Route path='/giftorders' element={<Giftorders />} />
                             <Route path='/kutirorders' element={<KutirOrder />} />
                             <Route path='/products' element={<Product />} />
                             <Route path='/orders' element={<ShowOrder />} />
+                            <Route path='/groceryorders' element={<Groceryorders />} />
+                            <Route path='/groceryorders/:id' element={<GroceryorderDetails />} />
                             <Route path='/transport' element={<Transport />} />
                             <Route path='/addGasPrice' element={<GasPrice />} />
                             <Route path='/cylinder' element={<Cylinder />} />
                             <Route path='/images' element={<ShowImage />} />
+                            <Route path='/gimages' element={<ShowGrocaryImage />} />
                             <Route path='/tuitions' element={<ShowTuitions />} />
                             <Route path='/addTuition' element={<AddTuition />} />
                             <Route path='/jobs' element={<ShowAllJobs />} />

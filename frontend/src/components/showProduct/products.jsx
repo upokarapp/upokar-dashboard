@@ -107,7 +107,8 @@ const UserTable = () => {
               <th>Image</th>
               <th>Name</th>
               <th>Price</th>
-              <th>Sid</th>
+              <th>Seller</th>
+              <th>Contact</th>
               <th>Category</th>
               <th>Options</th>
             </tr>
@@ -120,7 +121,8 @@ const UserTable = () => {
                 </td>
                 <td data-label="Name">{user.name}</td>
                 <td data-label="Price">{user.price}</td>
-                <td data-label="SellerId">{user.sellerId}</td>
+                <td data-label="Seller">{user.seller}</td>
+                <td data-label="Contact">{user.contact}</td>
                 <td data-label="Category">{user.category}</td>
                 <td data-label="Options">
                   <button onClick={() => setDeleteConfirm(user._id)} className='deleteUser'>Delete</button>

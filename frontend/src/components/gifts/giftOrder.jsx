@@ -100,7 +100,7 @@ const UserTable = () => {
                             <th>Product Price</th>
                             <th>Quantity</th>
                             <th>Total Price</th>
-                            <th>Requist</th>
+                            <th>Request</th>
                             <th>Options</th>
                         </tr>
                     </thead>
