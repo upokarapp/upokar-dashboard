@@ -41,16 +41,13 @@ connection();
 
 // Initialize express app
 const app = express();
-<<<<<<< HEAD
 const corsOptions = {
   origin: "https://upokar-dashboard.onrender.com",
   credentials: true,
   origin: true
 };
 app.use(cors(corsOptions));
-=======
-app.set('trust proxy', 1);
->>>>>>> 0e5604b2bfb8f975f9d0b661c1077b38b54eaaf1
+
 
 
 app.set('trust proxy', 1);
