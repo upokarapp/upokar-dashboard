@@ -5,15 +5,10 @@ const config = {
     },
     withCredentials: true
 };
-<<<<<<< HEAD
-
 
 
 // const URL = 'http://localhost:2000';
-=======
-axios.defaults.withCredentials = true; 
-// const URL = 'https://api-upokar.onrender.com';
->>>>>>> 0e5604b2bfb8f975f9d0b661c1077b38b54eaaf1
+
 const URL = 'https://upokar-dashboard-api.onrender.com';
 
 // ---------------- Customer api ------------------------------------
