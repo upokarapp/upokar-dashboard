@@ -56,17 +56,39 @@ const searchProduct = async (req, res) => {
   }
 };
 const deleteProduct = async (req, res) => {
+try {
     const id = req.params.id;
 
-    try {
-        const product = await Product.findByIdAndDelete(id);
-        if (!product) {
-            return res.status(404).json({ message: 'Product not found' });
-        }
-        res.json({ message: 'Product deleted successfully' });
-    } catch (error) {
-        res.status(500).json({ message: 'Server error' });
+    // Find the product by its ID.
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
     }
+
+    // Delete each image from ImageKit using its fileId.
+    for (const image of product.images) {
+
+      try {
+        await imagekit.deleteFile(image.fileId);
+      } catch (err) {
+        console.error(`Failed to delete image ${image.fileId} from ImageKit:`, err);
+      }
+    }
+
+    // Remove the product from the database.
+    await product.deleteOne();
+
+    res.status(200).json({
+      success: true,
+      message: 'Product and its images deleted successfully',
+    });
+  } catch (error) {
+    console.error('Error deleting product:', error);
+    res.status(500).json({
+      success: false,
+      message: error.message || 'Server error occurred',
+    });
+  }
 };
 
 export { getAllProducts, getProduct, searchProduct, deleteProduct };
