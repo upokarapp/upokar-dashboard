@@ -104,7 +104,7 @@ export const deleteProduct = async (req, res) => {
     // Delete each image from ImageKit using its fileId.
     for (const image of product.images) {
       try {
-        await imagekit.deleteFile(image.fileId);
+        await imagekit.deleteFile({ fileId: image.fileId });
       } catch (err) {
         console.error(`Failed to delete image ${image.fileId} from ImageKit:`, err);
         // Optionally, decide whether to continue or return an error.
