@@ -17,6 +17,14 @@ const companySchema = new mongoose.Schema({
   Jamuna: {
     type: String,
     required: true
+  },
+  Aygaz: {
+    type: String,
+    required: true
+  },
+  Petromax: {
+    type: String,
+    required: true
   }
 });
 
