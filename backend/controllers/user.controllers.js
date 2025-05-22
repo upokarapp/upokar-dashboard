@@ -4,7 +4,7 @@ const signup = async (req, res) => {
     try {
         const { name, email, number, address, password } = req.body;
 
-        const existingUser = await User.findOne({ $or: [{ email }, { number }] });
+        const existingUser = await User.findOne({ number });
         if (existingUser) {
             return res.status(400).json({ message: 'দুঃখিত এই ইমেইল অথবা মোবাইল নম্বর দিয়ে ইতিমধ্যে অ্যাকাউন্ট করা আছে' });
         }
