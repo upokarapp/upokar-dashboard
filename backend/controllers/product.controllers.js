@@ -1,4 +1,11 @@
 import Product from '../models/product.model.js';
+import ImageKit from 'imagekit';
+
+const imagekit = new ImageKit({
+  publicKey: 'public_TywKEZWUMlw2g9J6VWpfE4YMHfU=',
+  privateKey: 'private_w3YXm1flFh4Svchfcc98Nxf4Fl0=',
+  urlEndpoint: 'https://ik.imagekit.io/mdshahid',
+});
 
 const getAllProducts = async (req, res) => {
     const { category } = req.query;  // Get the category from the query params
