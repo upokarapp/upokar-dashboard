@@ -156,7 +156,7 @@ const deleteKutirOrder = async (id) => {
 // ---------------- Grocery Order api ------------------------------------
 
 
-const getAllGroceryOrders = async (page = 1, limit = 1) => {
+const getAllGroceryOrders = async (page = 1, limit = 10) => {
     try {
         const response = await axios.get(
             `${URL}/getAllGroceryOrders?page=${page}&limit=${limit}`,
