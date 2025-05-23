@@ -185,7 +185,26 @@
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
 }
+.status-confirmed {
+    color: #1e4620;
+    background-color: #d7f0db;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
 
+.status-processing {
+    color: #2e3a87;
+    background-color: #e0e7ff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.status-cancelled {
+    color: #721c24;
+    background-color: #f8d7da;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
 .details-button {
     background-color: #d4edda;
     color: #155724;
