@@ -68,7 +68,6 @@ import Order from '../models/order.model.js';
 //                 }
 //             }
 //         ]);
-            console.log(orders);
 //         res.status(200).json(orders);
 //     } catch (error) {
 //         res.status(500).json({ error: error.message });
@@ -157,7 +156,7 @@ export const getAllOrders = async (req, res) => {
                 $sort: { _id: -1 }
             }
         ]);
-
+            console.log(orders);
         res.status(200).json(orders);
     } catch (error) {
         res.status(500).json({ message: error.message });
