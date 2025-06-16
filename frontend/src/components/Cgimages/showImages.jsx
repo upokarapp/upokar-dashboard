@@ -1,7 +1,6 @@
 
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Spinner from "../loader"
 import { getAllGrocarySliderImages, createGrocarySliderImage, updateGrocarySliderImage, deleteGrocarySliderImage } from '../../Api';
 import '../Cimages/ImageGallery.css';
@@ -21,7 +20,6 @@ const ImageGallery = () => {
     const fetchImages = async () => {
         setLoading(true);
         try {
-            // const res = await axios.get('https://mocki.io/v1/39c46a44-838f-4137-95eb-3ab5ca3e09e3');
             const res = await getAllGrocarySliderImages();
             setImages(res);
         } catch (err) {
@@ -63,7 +61,6 @@ const ImageGallery = () => {
     };
 
     const handleUpdate = async (e) => {
-        console.log(updatingImage._id);
         e.preventDefault();
         const formData = new FormData();
         if (updatedFile) {

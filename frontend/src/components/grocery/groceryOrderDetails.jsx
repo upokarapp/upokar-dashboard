@@ -38,7 +38,7 @@ const GroceryOrderDetails = () => {
         try {
             setLoading(true);
             await deleteGroceryOrder(order._id);
-            navigate('/orders');
+            navigate('/groceryorders');
         } catch (err) {
             setError(err.message || 'Failed to delete order');
             setLoading(false);
@@ -87,7 +87,7 @@ const GroceryOrderDetails = () => {
                     {order.orderItems.map((item) => (
                         <div key={item._id} className="flex bg-gray-50 rounded p-4 items-center gap-2">
                             <img
-                                src={item.product.images[0].url}
+                                src={item.product.images[0]?.url}
                                 alt={item.product.name}
                                 className="w-20 h-20 object-cover rounded mr-4"
                             />

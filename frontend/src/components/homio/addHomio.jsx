@@ -44,7 +44,6 @@ const AmbulanceForm = () => {
         e.preventDefault();
         if (!validateForm()) return;
 
-        console.log(formData);
 
         // setIsSubmitting(true);
 

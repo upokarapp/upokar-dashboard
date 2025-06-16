@@ -88,7 +88,7 @@ const OrderTable = () => {
                 <div className="confirmation-modal">
                     <div className="modal-content">
                         <h3>Confirm Deletion</h3>
-                        <p>Are you sure you want to delete this Order? This action cannot be undone.</p>
+                        <p>Are you sure you want to delete this Ambulance? This action cannot be undone.</p>
                         <div className="modal-actions">
                             <button
                                 className="btn secondary"
@@ -100,7 +100,7 @@ const OrderTable = () => {
                                 className="btn danger"
                                 onClick={() => handelDelete(deleteConfirm)}
                             >
-                                Delete Order
+                                Delete Ambulance
                             </button>
                         </div>
                     </div>

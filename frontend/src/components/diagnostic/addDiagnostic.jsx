@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import axios from 'axios';
+import { addDiagnostic } from '../../Api'
 
 // Component to render individual doctor inputs
 const DoctorFields = ({ index, doctorData, handleDoctorChange, removeDoctor, errors }) => (
@@ -159,9 +159,7 @@ const AddDiagnosticForm = () => {
       payload.append('doctors', JSON.stringify(doctors));
       payload.append('image', image.file);
 
-      await axios.post('https://upokar-dashboard-api.onrender.com/addDiagnostic', payload, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      });
+      await addDiagnostic(payload);
 
       alert('Diagnostic added successfully!');
       setFormData({ diagnosticName: '', location: '', contactNumber: '' });

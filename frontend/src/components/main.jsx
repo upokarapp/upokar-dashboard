@@ -2,58 +2,105 @@ import "./main.css";
 import { useContext, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom"
 import { Context } from "../context"
+// 🔐 Authentication
+import Login from "./login/login";
 
-import Login from "./login/login"
-import Home from "./home"
-import HomeContainer from "./homeContainer"
-import UpadateAdmin from "./userControll/updateAdmin"
-import AddProduct from "./addProduct/addProduct";
-import Product from "./showProduct/products"
+// 🏠 Home / Dashboard
+import Home from "./home";
+import HomeContainer from "./homeContainer";
+
+// 👤 Admins & User Control
+import CreateAdmin from "./admins/createAdmin";
 import AdminsTable from "./admins/showAdmins";
-import ShowCustomer from "./customers/showCustomers"
-import ShowOrder from "./order/showOrder"
-import CreateAdmin from "./admins/createAdmin"
-import Transport from "./transport/showTransport"
-import GasPrice from "./gasPrice"
-import Cylinder from "./cylinder/showCylinder"
-import ShowImage from "../components/Cimages/showImages"
-import ShowGrocaryImage from "../components/Cgimages/showImages.jsx"
-import ShowTuitions from "../components/tuitions/showTuitions"
-import AddTuition from "../components/tuitions/addTuition"
-import ShowAllJobs from "../components/jobs/showAlljobs"
-import AddJob from "../components/jobs/addJob"
-import Labor from "../components/labor/showLabor"
-import LostPerson from "../components/lostPerson/showAllPerson"
-import AddHospital from "../components/hospital/addHospital"
-import ShowHospitals from "../components/hospital/showHospital"
-import AddAmbulance from "../components/ambulance/addAmdulance"
-import ShowAmbulance from "../components/ambulance/showAmbulance"
-import ShowPharmacy from "../components/pharmacy/showPharmacy"
-import AddPharmacy from "../components/pharmacy/addPharmacy"
-import AnimalCare from "../components/animalCare/showAnimaleCare"
-import AddAnimal from "../components/animalCare/addAnimalCare"
-import Homeopathy from "../components/homio/showHomio"
-import AddHomeopathy from "../components/homio/addHomio"
-import AddCommunity from "../components/community/addCommunity"
-import ShowCommunityCenter from "../components/community/showCommunity"
-import AddKutirShilpo from "../components/kutirShilpo/addKutirShilpo"
-import ShowKutirShilpo from "../components/kutirShilpo/showKutirShilpo"
-import AddSkillandit from "../components/skillAndIT/addSkillAndIT"
-import ShowSkillandit from "../components/skillAndIT/showSkillAndIT"
-import AddGifts from "../components/gifts/addGifts"
-import ShowGifts from "../components/gifts/showGifts"
-import Giftorders from "../components/gifts/giftOrder"
+import UpadateAdmin from "./userControll/updateAdmin";
+
+// 🛍️ Products
+import AddProduct from "./addProduct/addProduct";
+import Products from "./showProduct/products";
+import EditProduct from "./showProduct/editProduct";
+import AddLink from "../components/linkProduct/linkProduct";
+
+// 👥 Customers & Orders
+import ShowCustomer from "./customers/showCustomers";
+import ShowOrder from "./order/showOrder";
+import Groceryorders from "../components/grocery/showGroceryOrder";
+import GroceryorderDetails from "../components/grocery/groceryOrderDetails";
+import Giftorders from "../components/gifts/giftOrder";
 import KutirOrder from "../components/kutirShilpo/kutirOrder";
+
+// 🚚 Transport & Gas
+import Transport from "./transport/showTransport";
+import GasPrice from "./gasPrice";
+
+// 🧯 Cylinder
+import Cylinder from "./cylinder/showCylinder";
+
+// 🖼️ Image Management
+import ShowImage from "../components/Cimages/showImages";
+import ShowGrocaryImage from "../components/Cgimages/showImages.jsx";
+
+// 🎓 Education (Tuitions)
+import ShowTuitions from "../components/tuitions/showTuitions";
+import AddTuition from "../components/tuitions/addTuition";
+
+// 💼 Jobs & Labor
+import ShowAllJobs from "../components/jobs/showAlljobs";
+import AddJob from "../components/jobs/addJob";
+import Labor from "../components/labor/showLabor";
+
+// 🚨 Lost & Emergency
+import LostPerson from "../components/lostPerson/showAllPerson";
+
+// 🏥 Hospital & Health Services
+import AddHospital from "../components/hospital/addHospital";
+import ShowHospitals from "../components/hospital/showHospital";
+import AddAmbulance from "../components/ambulance/addAmdulance";
+import ShowAmbulance from "../components/ambulance/showAmbulance";
+import AddPharmacy from "../components/pharmacy/addPharmacy";
+import ShowPharmacy from "../components/pharmacy/showPharmacy";
+
+// 🐾 Animal Care
+import AddAnimal from "../components/animalCare/addAnimalCare";
+import AnimalCare from "../components/animalCare/showAnimaleCare";
+
+// 🌿 Homeopathy
+import AddHomeopathy from "../components/homio/addHomio";
+import Homeopathy from "../components/homio/showHomio";
+
+// 🏘️ Community Center
+import AddCommunity from "../components/community/addCommunity";
+import ShowCommunityCenter from "../components/community/showCommunity";
+
+// 🧵 Kutir Shilpo
+import AddKutirShilpo from "../components/kutirShilpo/addKutirShilpo";
+import EditKutirShilpo from "../components/kutirShilpo/editKutir"
+import ShowKutirShilpo from "../components/kutirShilpo/showKutirShilpo";
+
+// 🎁 Gifts
+import AddGifts from "../components/gifts/addGifts";
+import EditGift from "../components/gifts/editGift";
+import ShowGifts from "../components/gifts/showGifts";
+
+// 🧠 Skills & IT
+import AddSkillandit from "../components/skillAndIT/addSkillAndIT";
+import ShowSkillandit from "../components/skillAndIT/showSkillAndIT";
+
+
+// 🧑‍🤝‍🧑 Volunteers
 import AddVolunteers from "../components/volunteers/addVolunteer";
 import ShowVolunteers from "../components/volunteers/showVolunteer";
-import AddLink from "../components/linkProduct/linkProduct";
+
+// 🧪 Diagnostic & Doctors
 import AddDiagnostic from "../components/diagnostic/addDiagnostic";
 import ShowDiagnostic from "../components/diagnostic/showDiagnostic";
 import AddDoctor from "../components/diagnostic/addDoctor.jsx";
 import Doctors from "../components/diagnostic/doctors";
-import BloodDonners from "../components/blood donors/showBloodDonors"
-import Groceryorders from "../components/grocery/showGroceryOrder"
-import GroceryorderDetails from "../components/grocery/groceryOrderDetails"
+
+// 🩸 Blood Donors
+import BloodDonners from "../components/blood donors/showBloodDonors";
+
+
+
 export default function App() {
     const { state, dispatch } = useContext(Context);
     const online = () => {
@@ -75,6 +122,8 @@ export default function App() {
                             <Route path='/customers' element={<ShowCustomer />} />
                             <Route path='/addProduct' element={<AddProduct />} />
                             <Route path='/addProductLink' element={<AddLink />} />
+                            <Route path='/products' element={<Products />} />
+                            <Route path='/product/:id' element={<EditProduct />} />
                             <Route path='/hospitals' element={<ShowHospitals />} />
                             <Route path='/addHospital' element={<AddHospital />} />
                             <Route path='/diagnostics' element={<ShowDiagnostic />} />
@@ -93,14 +142,15 @@ export default function App() {
                             <Route path='/addCommunity' element={<AddCommunity />} />
                             <Route path='/community-centers' element={<ShowCommunityCenter />} />
                             <Route path='/addKutirShilpo' element={<AddKutirShilpo />} />
+                            <Route path='/editKutir/:id' element={<EditKutirShilpo />} />
                             <Route path='/kutirshilpo' element={<ShowKutirShilpo />} />
                             <Route path='/skillandit' element={<ShowSkillandit />} />
                             <Route path='/addSkillAndIT' element={<AddSkillandit />} />
                             <Route path='/gifts' element={<ShowGifts />} />
                             <Route path='/addGift' element={<AddGifts />} />
+                            <Route path='/editGift/:id' element={<EditGift />} />
                             <Route path='/giftorders' element={<Giftorders />} />
                             <Route path='/kutirorders' element={<KutirOrder />} />
-                            <Route path='/products' element={<Product />} />
                             <Route path='/orders' element={<ShowOrder />} />
                             <Route path='/groceryorders' element={<Groceryorders />} />
                             <Route path='/groceryorders/:id' element={<GroceryorderDetails />} />

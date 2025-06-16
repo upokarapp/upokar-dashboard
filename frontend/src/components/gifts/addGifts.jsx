@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import axios from 'axios';
+import { addGift } from '../../Api';
 
 const CommunityCenterForm = () => {
   const giftPackages = [
@@ -12,7 +12,6 @@ const CommunityCenterForm = () => {
     "বিবাহবার্ষিকী প্যাকেজ",
     "বিয়ের উপহার",
     "কাপল প্যাকেজ",
-    "গার্লফ্রেন্ড-বয়ফ্রেন্ড প্যাকেজ",
     "বাচ্ছাদের জন্য গিফট",
     "কলিগ-এর জন্য গিফট",
     "বন্ধুর জন্য - বান্ধবীর জন্য",
@@ -98,9 +97,7 @@ const CommunityCenterForm = () => {
       form.append('description', formData.description);
       form.append('image', image.file);
 
-      await axios.post('https://upokar-dashboard-api.onrender.com/addGift', form, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      });
+      await addGift(form);
 
       // Reset form
       setFormData({ centerName: '', contactNumber: '', price: '', description: '' });
@@ -108,7 +105,7 @@ const CommunityCenterForm = () => {
       if (fileInputRef.current) fileInputRef.current.value = '';
       alert('Gift item added successfully!');
     } catch (error) {
-      alert(`Error: ${error.response?.data?.message || 'Failed to add gift item'}`);
+      alert(`Error: ${error || 'Failed to add gift item'}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -165,7 +162,7 @@ const CommunityCenterForm = () => {
           <input
             type="number"
             name="price"
-            step="0.01"
+            onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })}
             value={formData.price}
             onChange={handleInputChange}
             className={`w-full p-2 border rounded-md ${errors.price ? 'border-red-500' : 'border-gray-300'}`}

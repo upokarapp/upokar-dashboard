@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
-import axios from 'axios';
-
+import { addhospitals } from '../../Api'
 const HospitalForm = () => {
   const [formData, setFormData] = useState({
     hospitalName: '',
@@ -41,7 +40,7 @@ const HospitalForm = () => {
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    
+
     if (!file.type.startsWith('image/')) {
       setErrors(prev => ({ ...prev, image: 'Please upload a valid image file' }));
       return;
@@ -72,19 +71,14 @@ const HospitalForm = () => {
     setIsSubmitting(true);
 
     try {
-      // console.log(formData);
-      
       const nformData = new FormData();
       nformData.append('hospitalName', formData.hospitalName);
       nformData.append('contactNumber', formData.contactNumber);
       nformData.append('location', formData.location);
       nformData.append('services', JSON.stringify(services));
       nformData.append('image', image.file);
-      
-      // await axios.post('https://api-upokar.onrender.com/addhospitals', nformData, {
-      await axios.post('https://upokar-dashboard-api.onrender.com/addhospitals', nformData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      });
+
+      await addhospitals(nformData);
 
       // Reset form
       setFormData({ hospitalName: '', contactNumber: '', location: '' });
@@ -93,7 +87,7 @@ const HospitalForm = () => {
       if (fileInputRef.current) fileInputRef.current.value = '';
       alert('Hospital added successfully!');
     } catch (error) {
-      alert(`Error: ${error.response?.data?.message || 'Failed to add hospital'}`);
+      alert(`Error: ${error || 'Failed to add hospital'}`);
     } finally {
       setIsSubmitting(false);
     }

@@ -42,7 +42,6 @@ const UserTable = () => {
         setLoading(true);
         try {
             const response = await searchOrders(searchQuery);
-            console.log(response);
             setOrders(response);
             setLoading(false);
         } catch (error) {

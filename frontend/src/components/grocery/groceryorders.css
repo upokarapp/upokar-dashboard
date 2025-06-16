@@ -185,6 +185,7 @@
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
 }
+
 .status-confirmed {
     color: #1e4620;
     background-color: #d7f0db;
@@ -205,6 +206,7 @@
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
 }
+
 .details-button {
     background-color: #d4edda;
     color: #155724;

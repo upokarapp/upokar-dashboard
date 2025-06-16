@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import axios from 'axios';
+import { addAkillAndIT } from '../../Api'
 
 const SkillAndIT = () => {
     const [formData, setFormData] = useState({
@@ -57,16 +57,14 @@ const SkillAndIT = () => {
             form.append('description', formData.description);
             form.append('image', image.file);
 
-            await axios.post('https://upokar-dashboard-api.onrender.com/addAkillAndIT', form, {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            });
+            await addAkillAndIT(form);
             // Reset form
             setFormData({ centerName: '', contactNumber: '', description: '' });
             setImage(null);
             if (fileInputRef.current) fileInputRef.current.value = '';
             alert('Skill and IT added successfully!');
         } catch (error) {
-            alert(`Error: ${error.response?.data?.message || 'Failed to add center'}`);
+            alert(`${error || 'Failed to add center'}`);
         } finally {
             setIsSubmitting(false);
         }

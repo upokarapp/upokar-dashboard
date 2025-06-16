@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import axios from 'axios';
+import { addkutirshilpo } from "../../Api"
 
 const CommunityCenterForm = () => {
   const [formData, setFormData] = useState({
@@ -70,17 +70,15 @@ const CommunityCenterForm = () => {
       form.append('description', formData.description);
       form.append('image', image.file);
 
-      await axios.post('https://upokar-dashboard-api.onrender.com/addkutirshilpo', form, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      });
+      await addkutirshilpo(form);
 
       // Reset form
       setFormData({ centerName: '', contactNumber: '', price: '', description: '' });
       setImage(null);
       if (fileInputRef.current) fileInputRef.current.value = '';
-      alert('Community center added successfully!');
+      alert('Kutir Shilpo added successfully!');
     } catch (error) {
-      alert(`Error: ${error.response?.data?.message || 'Failed to add center'}`);
+      alert(`Error: ${error || 'Failed to add center'}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -122,7 +120,7 @@ const CommunityCenterForm = () => {
           <input
             type="number"
             name="price"
-            step="0.01"
+           onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })}
             value={formData.price}
             onChange={handleInputChange}
             className={`w-full p-2 border rounded-md ${errors.price ? 'border-red-500' : 'border-gray-300'}`}

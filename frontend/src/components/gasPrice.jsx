@@ -65,7 +65,7 @@ const GasPriceForm = () => {
                 placeholder="Enter price"
                 required
                 min="1"
-                step="0.01"
+                onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })}
               />
               <span className="currency">BDT</span>
             </div>

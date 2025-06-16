@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import axios from 'axios';
+import { addcommunity } from "../../Api"
 
 const CommunityCenterForm = () => {
     const [formData, setFormData] = useState({
@@ -60,9 +60,7 @@ const CommunityCenterForm = () => {
             form.append('description', formData.description);
             form.append('image', image.file);
 
-            await axios.post('https://upokar-dashboard-api.onrender.com/addcommunity', form, {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            });
+            await addcommunity(form);
 
             // Reset form
             setFormData({ centerName: '', contactNumber: '', location: '', description: '' });
@@ -70,7 +68,7 @@ const CommunityCenterForm = () => {
             if (fileInputRef.current) fileInputRef.current.value = '';
             alert('Community center added successfully!');
         } catch (error) {
-            alert(`Error: ${error.response?.data?.message || 'Failed to add center'}`);
+            alert(`Error: ${error || 'Failed to add center'}`);
         } finally {
             setIsSubmitting(false);
         }

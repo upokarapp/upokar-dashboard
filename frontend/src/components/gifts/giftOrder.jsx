@@ -46,7 +46,6 @@ const UserTable = () => {
         setLoading(true);
         try {
             const response = await searchGiftOrders(searchQuery);
-            console.log(response);
             setOrders(response);
             setLoading(false);
         } catch (error) {

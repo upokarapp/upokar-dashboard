@@ -8,11 +8,31 @@ const UserTable = () => {
     const [loading, setLoading] = useState(true); // Loading state
     const [error, setError] = useState(null); // Error state to handle fetch errors
     const [searchQuery, setSearchQuery] = useState("");
-    const [deleteConfirm, setDeleteConfirm] = useState(null)
-    const fetchData = async () => {
+    const [deleteConfirm, setDeleteConfirm] = useState(null);
+
+    // Pagination state
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(10);
+    const [totalItems, setTotalItems] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
+    const fetchData = async (page = currentPage) => {
+        setLoading(true);
         try {
-            const response = await getAllCustomer();
-            setUsers(response);
+            const response = await getAllCustomer(page, itemsPerPage);
+
+            // Assuming the API returns an object with users array and pagination info
+            // If the API returns just an array, we'll handle that case too
+            if (response && typeof response === 'object' && response.users) {
+                setUsers(response.users);
+                setTotalItems(response.totalItems || 0);
+                setTotalPages(response.totalPages || Math.ceil((response.totalItems || 0) / itemsPerPage));
+            } else {
+                // If API returns just an array (current behavior), treat it as first page
+                setUsers(response || []);
+                setTotalItems(response?.length || 0);
+                setTotalPages(1);
+            }
+            setError(null);
         } catch (error) {
             setError("Error fetching data");
         } finally {
@@ -22,35 +42,61 @@ const UserTable = () => {
     const handleDelete = async (id) => {
         setLoading(true);
         try {
-            const response = await deleteUser(id)
-            fetchData();
+            await deleteUser(id);
+            fetchData(currentPage);
             alert('User deleted successfully!');
-            setLoading(false);
         } catch (error) {
-            alert('Failed to fetch all admin data');
-            setLoading(false);
+            alert('Failed to delete user');
         } finally {
+            setLoading(false);
             setDeleteConfirm(null); // Close the confirmation modal
         }
     }
     const handleSearch = async (e) => {
         e.preventDefault();
-        // If search query is empty, fetch all products
+        // If search query is empty, fetch all customers
         if (!searchQuery.trim()) {
-            fetchData();
+            setCurrentPage(1);
+            fetchData(1);
             return;
         }
         setLoading(true);
         try {
             const response = await searchCustomer(searchQuery);
-            setLoading(false);
             setUsers(response);
+            // Reset pagination for search results
+            setCurrentPage(1);
+            setTotalItems(response?.length || 0);
+            setTotalPages(1);
         } catch (err) {
+            setError("Error searching customers");
+        } finally {
             setLoading(false);
         }
     }
+
+    // Pagination functions
+    const handlePageChange = (page) => {
+        if (page >= 1 && page <= totalPages && page !== currentPage) {
+            setCurrentPage(page);
+            fetchData(page);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            handlePageChange(currentPage - 1);
+        }
+    };
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            handlePageChange(currentPage + 1);
+        }
+    };
+
     useEffect(() => {
-        fetchData();
+        fetchData(1);
     }, []);
 
     if (loading) {
@@ -72,7 +118,7 @@ const UserTable = () => {
                                 type="text"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                placeholder="Search products..."
+                                placeholder="Search customers..."
                                 className="search-input"
                             />
                             <button type="submit" className="search-button">
@@ -110,6 +156,61 @@ const UserTable = () => {
                     </tbody>
                 </table>
             )}
+
+            {/* Pagination Controls */}
+            {!searchQuery && totalPages > 1 && (
+                <div className="pagination-container">
+                    <div className="pagination-info">
+                        <span>
+                            Showing {((currentPage - 1) * itemsPerPage) + 1} to {Math.min(currentPage * itemsPerPage, totalItems)} of {totalItems} customers
+                        </span>
+                    </div>
+                    <div className="pagination-controls">
+                        <button
+                            onClick={handlePreviousPage}
+                            disabled={currentPage === 1}
+                            className={`pagination-btn ${currentPage === 1 ? 'disabled' : ''}`}
+                        >
+                            Previous
+                        </button>
+
+                        {/* Page numbers */}
+                        <div className="page-numbers">
+                            {Array.from({ length: Math.min(5, totalPages) }, (_, index) => {
+                                let pageNumber;
+                                if (totalPages <= 5) {
+                                    pageNumber = index + 1;
+                                } else if (currentPage <= 3) {
+                                    pageNumber = index + 1;
+                                } else if (currentPage >= totalPages - 2) {
+                                    pageNumber = totalPages - 4 + index;
+                                } else {
+                                    pageNumber = currentPage - 2 + index;
+                                }
+
+                                return (
+                                    <button
+                                        key={pageNumber}
+                                        onClick={() => handlePageChange(pageNumber)}
+                                        className={`page-btn ${currentPage === pageNumber ? 'active' : ''}`}
+                                    >
+                                        {pageNumber}
+                                    </button>
+                                );
+                            })}
+                        </div>
+
+                        <button
+                            onClick={handleNextPage}
+                            disabled={currentPage === totalPages}
+                            className={`pagination-btn ${currentPage === totalPages ? 'disabled' : ''}`}
+                        >
+                            Next
+                        </button>
+                    </div>
+                </div>
+            )}
+
             {deleteConfirm && (
                 <div className="confirmation-modal">
                     <div className="modal-content">

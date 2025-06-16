@@ -13,7 +13,7 @@ const signup = async (req, res) => {
         res.status(201).json(user);
     } catch (error) {
         console.log(error);
-        
+
         res.status(500).json({ message: 'Server error' });
     }
 };
@@ -80,20 +80,31 @@ const deleteUser = async (req, res) => {
     }
 }
 const getAllUsers = async (req, res) => {
+    const { page = 1, limit = 10 } = req.query;
+
     try {
-        // Query the database to find all users
-        const users = await User.find().sort({ _id: -1 });;  // This will return all users
+        const pageNum = parseInt(page);
+        const limitNum = parseInt(limit);
+        const skip = (pageNum - 1) * limitNum;
 
-        // Check if no users are found
-        if (users.length === 0) {
-            return res.status(404).send('No users found');
-        }
+        const users = await User.find({})
+            .sort({ _id: -1 })
+            .skip(skip)
+            .limit(limitNum);
 
-        // Send the users as a response
-        res.status(200).json(users);
-    } catch (err) {
-        console.error('Error fetching users:', err);
-        res.status(500).send('Server error');
+        const totalItems = await User.countDocuments({});
+        const totalPages = Math.ceil(totalItems / limitNum);
+
+        res.json({
+            users,
+            totalItems,
+            totalPages,
+            currentPage: pageNum,
+            itemsPerPage: limitNum
+        });
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        res.status(500).json({ message: 'Server error' });
     }
 };
 

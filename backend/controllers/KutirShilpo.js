@@ -19,6 +19,25 @@ export const getKutirShilpo = async (req, res) => {
         res.status(500).json(error.message);
     }
 }
+export const updateKutirShilpo = async (req, res) => {
+    const id = req.params.id;
+    const data = req.body;
+    
+    try {
+        const updatedKutirShilpo = await KutirShilpo.findByIdAndUpdate(
+            id,
+            data,
+            { new: true }
+        );
+        if (!updatedKutirShilpo) {
+            return res.status(404).json({ message: 'Kutir Shilpo not found' });
+        }
+        res.json(updatedKutirShilpo);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
 export const uploadKutirShilpoImage = async (req, res) => {
     const { centerName, contactNumber, price, description } = req.body;
     try {

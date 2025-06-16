@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { createPharmacy } from "../../Api"
 
 const AmbulanceForm = () => {
@@ -45,7 +44,6 @@ const AmbulanceForm = () => {
         e.preventDefault();
         if (!validateForm()) return;
 
-        console.log(formData);
         
         // setIsSubmitting(true);
 

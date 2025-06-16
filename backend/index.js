@@ -42,7 +42,7 @@ connection();
 // Initialize express app
 const app = express();
 const corsOptions = {
-  origin: "https://upokar-dashboard.onrender.com",
+  origin: "https://upokar-dashboard.netlify.app",
   credentials: true,
   origin: true
 };

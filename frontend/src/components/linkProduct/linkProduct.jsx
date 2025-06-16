@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import axios from 'axios';
+import { linkProducts } from '../../Api';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'; // Icon for selected image
@@ -103,8 +103,8 @@ const AddProduct = () => {
         // Filter for valid image types
         const validFiles = files.filter(file => file.type.startsWith('image/'));
         if (validFiles.length !== files.length) {
-             setErrors(prev => ({ ...prev, images: 'Please upload only valid image files (jpg, png, gif, etc.)' }));
-             // Optionally only add the valid ones if desired
+            setErrors(prev => ({ ...prev, images: 'Please upload only valid image files (jpg, png, gif, etc.)' }));
+            // Optionally only add the valid ones if desired
         }
 
         if (validFiles.length > 0) {
@@ -117,9 +117,9 @@ const AddProduct = () => {
         }
 
         // Clear the file input value to allow selecting the same file again if removed
-         if (fileInputRef.current) {
+        if (fileInputRef.current) {
             fileInputRef.current.value = '';
-         }
+        }
     };
 
     // Handle removal of a product image preview
@@ -127,10 +127,10 @@ const AddProduct = () => {
         // Revoke the object URL before removing the image from state
         URL.revokeObjectURL(images[indexToRemove].preview);
         setImages(prevImages => prevImages.filter((_, index) => index !== indexToRemove));
-         // If removing the last image caused an error, clear it
-         if (images.length === 1 && errors.images === 'At least one image is required') {
+        // If removing the last image caused an error, clear it
+        if (images.length === 1 && errors.images === 'At least one image is required') {
             setErrors(prev => ({ ...prev, images: '' }));
-         }
+        }
     };
 
     // Validate the entire form before submission
@@ -175,16 +175,10 @@ const AddProduct = () => {
                 formData.append(`images`, image.file); // Use 'images' as the key, matching common backend expectations
             });
 
-            // Make the API call
-            // Replace with your actual API endpoint
-            const response = await axios.post('https://upokar-dashboard-api.onrender.com/api/linkProducts', formData, {
-                headers: {
-                    // Content-Type is automatically set to 'multipart/form-data' by axios when using FormData
-                }
-            });
-
+            const response = await linkProducts(formData);
+            
             // Handle success (assuming response.data indicates success)
-            if (response.data) { // Adjust based on your actual API response structure
+            if (response.product) { // Adjust based on your actual API response structure
                 alert('Product added successfully!');
                 // Reset form state
                 setProductData({ name: '', description: '', price: '', category: '', carouselImageLink: '' });
@@ -192,9 +186,9 @@ const AddProduct = () => {
                 setErrors({});
                 if (fileInputRef.current) fileInputRef.current.value = ''; // Clear file input
             } else {
-                 // Handle cases where API responds 2xx but indicates logical failure
-                 setErrors({ submit: response.data.message || 'An unexpected error occurred.' });
-                 alert(`Failed to add product: ${response.data.message || 'Unknown error'}`);
+                // Handle cases where API responds 2xx but indicates logical failure
+                setErrors({ submit: response.message || 'An unexpected error occurred.' });
+                alert(`Failed to add product: ${response.message || 'Unknown error'}`);
             }
         } catch (error) {
             console.error("Error submitting product:", error);
@@ -249,7 +243,7 @@ const AddProduct = () => {
                         id="price"
                         type="number"
                         name="price"
-                        step="0.01"
+                        onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })}
                         min="0.01" // Basic HTML5 validation
                         value={productData.price}
                         onChange={handleInputChange}

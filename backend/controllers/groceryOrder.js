@@ -260,3 +260,17 @@ export const updateOrderStatus = async (req, res) => {
         });
     }
 };
+
+export const deleteGroceryOrder = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const product = await GroceryOrder.findByIdAndDelete(id);
+        if (!product) {
+            return res.status(404).json({ message: 'Order not found' });
+        }
+        res.json({ message: 'Order deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+};

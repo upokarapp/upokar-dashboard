@@ -167,4 +167,117 @@
       padding: 0.5rem;
     }
   }
+
+/* Pagination Styles */
+#user-table .pagination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#user-table .pagination-info {
+  color: #6b7280;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+#user-table .pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#user-table .pagination-btn {
+  background: #f8f9fa;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+#user-table .pagination-btn:hover:not(.disabled) {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+#user-table .pagination-btn.disabled {
+  background: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+#user-table .page-numbers {
+  display: flex;
+  gap: 0.25rem;
+}
+
+#user-table .page-btn {
+  background: #f8f9fa;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-width: 2.5rem;
+  text-align: center;
+}
+
+#user-table .page-btn:hover {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+#user-table .page-btn.active {
+  background: #721c24;
+  color: white;
+  border-color: #721c24;
+}
+
+#user-table .page-btn.active:hover {
+  background: #5a1419;
+  border-color: #5a1419;
+}
+
+/* Mobile responsive pagination */
+@media (max-width: 768px) {
+  #user-table .pagination-container {
+    margin: 1rem 0;
+    padding: 0.75rem;
+  }
+
+  #user-table .pagination-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+
+  #user-table .pagination-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  #user-table .page-btn {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+    min-width: 2rem;
+  }
+
+  #user-table .pagination-info {
+    font-size: 0.8rem;
+  }
+}
   

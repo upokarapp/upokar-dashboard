@@ -95,7 +95,6 @@ const UpdateProfilePage = () => {
 
     try {
       const response = await adminUpdate(formData);
-      console.log(response);
       
       dispatch({ type: "ADMIN_UPDATE", payload: response });
       setFormData((prevData) => ({

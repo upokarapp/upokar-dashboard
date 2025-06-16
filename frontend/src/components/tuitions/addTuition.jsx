@@ -31,7 +31,6 @@ const TutorForm = () => {
     try {
       setLoading(true);
       const response = await createTuition(formData);
-      console.log(response);
       setFormData({
         gender: 'Female',
         qualification: '',
@@ -98,6 +97,7 @@ const TutorForm = () => {
             value={formData.students}
             onChange={handleChange}
             className="tutor-form-input"
+            onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })}
           />
         </div>
 

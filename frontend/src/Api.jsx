@@ -7,14 +7,17 @@ const config = {
 };
 
 
-// const URL = 'http://localhost:2000';
+const URL = 'http://localhost:2000';
 
-const URL = 'https://upokar-dashboard-api.onrender.com';
+// const URL = 'https://upokar-dashboard-api.onrender.com';
 
 // ---------------- Customer api ------------------------------------
-const getAllCustomer = async (id) => {
+const getAllCustomer = async (page = 1, limit = 10) => {
     try {
-        const response = await axios.get(`${URL}/getAllUsers`)
+        const response = await axios.get(
+            `${URL}/getAllUsers?page=${page}&limit=${limit}`,
+            config
+        );
         return response.data;
     } catch (error) {
         throw new Error('Failed to fetch all admin data');
@@ -38,12 +41,44 @@ const searchCustomer = async (search = "") => {
     }
 }
 // ---------------- Product api ------------------------------------
-const getAllProduct = async (id) => {
+const getAllProduct = async (page = 1, limit = 10) => {
     try {
-        const response = await axios.get(`${URL}/products`, config)
+        const response = await axios.get(
+            `${URL}/products?page=${page}&limit=${limit}`,
+            config
+        );
         return response.data;
     } catch (error) {
         throw new Error('Failed to fetch all admin data');
+    }
+}
+const getProduct = async (id) => {
+    try {
+        const response = await axios.get(`${URL}/product/${id}`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
+const addProduct = async (productData) => {
+
+    try {
+        const response = await axios.post(`${URL}/api/products`, productData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message ? error.response.data?.message : (error.message || 'Failed to add product'));
+    }
+}
+const updateProduct = async (id, productData) => {
+    try {
+        const response = await axios.put(`${URL}/updateProduct/${id}`, productData, config)
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message ? error.response.data?.message : (error.message || 'Failed to update product'));
     }
 }
 const searchProduct = async (search = "") => {
@@ -65,6 +100,18 @@ const deleteProduct = async (id) => {
     }
 }
 
+const linkProducts = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/api/linkProducts`, data, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message ? error.response.data?.message : (error.message || 'Failed to Link product'));
+    }
+}
 
 // ---------------- Order api ------------------------------------
 const getAllOrders = async () => {
@@ -340,6 +387,16 @@ const getAllHospitals = async () => {
         throw new Error('Failed to fetch all admin data');
     }
 }
+const addhospitals = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/addhospitals`, data, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        })
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
 const deletehospitals = async (data) => {
     try {
         const response = await axios.post(`${URL}/deletehospitals`, data, config)
@@ -358,7 +415,16 @@ const getAllDaignostic = async () => {
         throw new Error('Failed to fetch all admin data');
     }
 }
-
+const addDiagnostic = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/addDiagnostic`, data, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        })
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch all admin data');
+    }
+}
 const getAllDiagnosticID = async () => {
     try {
         const response = await axios.get(`${URL}/getAllDiagnosticID`, config)
@@ -426,7 +492,7 @@ const getAllAmbulance = async () => {
         const response = await axios.get(`${URL}/getAllAmbulances`, config)
         return response.data;
     } catch (error) {
-        throw new Error('Failed to fetch all admin data');
+        throw new Error(error.response?.data?.message || error.message || 'Failed to fetch ambulance data');
     }
 }
 
@@ -435,7 +501,8 @@ const createAmbulance = async (data) => {
         const response = await axios.post(`${URL}/createAmbulance`, data, config)
         return response.data;
     } catch (error) {
-        throw new Error('Failed to fetch all admin data');
+
+        throw new Error(error.response?.data?.message ? error.response.data?.message : (error.message || 'Failed to add ambulance'));
     }
 }
 const deleteAmbulance = async (id) => {
@@ -535,11 +602,6 @@ const getAllSliderImages = async () => {
     }
 }
 const createSliderImage = async (data) => {
-    // console.log(data.entries());
-
-    // for (let pair of data.entries()) {
-    //     console.log(pair[0] + ':', pair[1]);
-    // }
     try {
         const response = await axios.post(`${URL}/slideImages/upload`, data)
         return response.data;
@@ -556,7 +618,6 @@ const updateSliderImage = async (data) => {
     }
 }
 const deleteSliderImage = async (data) => {
-    console.log(data);
     try {
         const response = await axios.post(`${URL}/deleteSliderImage`, data)
         return response.data;
@@ -613,6 +674,16 @@ const getAllCommunity = async () => {
         throw new Error('Failed to fetch all admin data');
     }
 }
+const addcommunity = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/addcommunity`, data, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        })
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message ? error.response.data?.message : (error.message || 'Failed to add community center'));
+    }
+}
 const deletecommunity = async (data) => {
     try {
         const response = await axios.post(`${URL}/deletecommunity`, data, config)
@@ -632,6 +703,34 @@ const getAllKutirShilpo = async () => {
         throw new Error('Failed to fetch all admin data');
     }
 }
+
+const getKutir = async (id) => {
+    try {
+        const response = await axios.get(`${URL}/getKutirShilpo/${id}`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error(error?.response?.data?.message ? error.response.data?.message : (error.message || 'Failed to fetch kutir shilpo'));
+    }
+}
+
+const updateKutirShilpo = async (id, data) => {
+    try {
+        const response = await axios.put(`${URL}/updateKutirShilpo/${id}`, data, config)
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message ? error.response.data?.message : (error.message || 'Failed to update kutir shilpo'));
+    }
+}
+const addkutirshilpo = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/addkutirshilpo`, data, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        })
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message ? error.response.data?.message : (error.message || 'Failed to add kutir shilpo'));
+    }
+}
 const deleteKutirShilpo = async (data) => {
     try {
         const response = await axios.post(`${URL}/deletekutirshilpo`, data, config)
@@ -649,6 +748,34 @@ const getAllGift = async () => {
         return response.data;
     } catch (error) {
         throw new Error('Failed to fetch gift items');
+    }
+}
+const getGift = async (id) => {
+    try {
+        const response = await axios.get(`${URL}/getGift/${id}`, config)
+        return response.data;
+    } catch (error) {
+        throw new Error(error?.response?.data?.message ? error.response.data?.message : (error.message || 'Failed to fetch gift item'));
+    }
+}
+
+const addGift = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/addGift`, data, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        })
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message ? error.response.data?.message : (error.message || 'Failed to add gift item'));
+    }
+}
+
+const updateGift = async (id, data) => {
+    try {
+        const response = await axios.put(`${URL}/updateGift/${id}`, data, config)
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message ? error.response.data?.message : (error.message || 'Failed to update gift item'));
     }
 }
 const deleteGift = async (data) => {
@@ -716,6 +843,16 @@ const getAllSkillAndIT = async () => {
         throw new Error('Failed to fetch all admins');
     }
 }
+const addAkillAndIT = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/addAkillAndIT`, data, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        })
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message ? error.response.data?.message : (error.message || 'Failed to add Skill and IT'));
+    }
+}
 const deleteSkillAndIT = async (data) => {
     try {
         const response = await axios.post(`${URL}/deleteSkillAndIT`, data, config)
@@ -732,6 +869,17 @@ const getAllVolunteer = async () => {
         return response.data;
     } catch (error) {
         throw new Error('Failed to fetch all admins');
+    }
+}
+
+const addVolunteer = async (data) => {
+    try {
+        const response = await axios.post(`${URL}/addVolunteer`, data, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        })
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message ? error.response.data?.message : (error.message || 'Failed to add Volunteer'));
     }
 }
 
@@ -875,9 +1023,12 @@ export {
 
     // Product-related functions
     getAllProduct,
+    getProduct,
+    updateProduct,
+    addProduct,
     searchProduct,
     deleteProduct,
-
+    linkProducts,
     // Order-related functions
     getAllOrders,
     searchOrders,
@@ -923,11 +1074,13 @@ export {
 
     // Hospital-related functions
     getAllHospitals,
+    addhospitals,
     deletehospitals,
 
     // Diagnostic-related functions
 
     getAllDaignostic,
+    addDiagnostic,
     getAllDiagnosticID,
     deleteDiagnostic,
     getAllDoctors,
@@ -974,15 +1127,22 @@ export {
     // Community-related functions
 
     getAllCommunity,
+    addcommunity,
     deletecommunity,
 
     // KutirShilpo-related functions
 
     getAllKutirShilpo,
+    getKutir,
+    updateKutirShilpo,
+    addkutirshilpo,
     deleteKutirShilpo,
 
     // Gift-related functions
     getAllGift,
+    getGift,
+    addGift,
+    updateGift,
     deleteGift,
     // Tuition-related functions
     createTuition,
@@ -995,10 +1155,12 @@ export {
 
     // Skill and IT-related functions
     getAllSkillAndIT,
+    addAkillAndIT,
     deleteSkillAndIT,
 
     // Volunteer-related functions
     getAllVolunteer,
+    addVolunteer,
     deleteVolunteer,
 
     // Job-related functions

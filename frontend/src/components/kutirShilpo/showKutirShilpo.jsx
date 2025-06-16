@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAllKutirShilpo, deleteKutirShilpo } from "../../Api"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Spinner from "../loader"
 import './showKutir.css';
 
@@ -10,6 +10,7 @@ const OrderTable = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [deleteConfirm, setDeleteConfirm] = useState(null)
+    const navigate = useNavigate();
 
     const fetchData = async () => {
         try {
@@ -81,8 +82,13 @@ const OrderTable = () => {
                                 <div data-label="Name">{order.name}</div>
                                 <div data-label="Phone">{order.contact}</div>
                                 <div data-label="Price">{order.price}</div>
-                                <div data-label="Description">{order.disc}</div>
-                                <div data-label="Delete"> <span onClick={() => setDeleteConfirm({ _id: order._id, id: order.imageId })} className='deleteUser'>Delete</span></div>
+                                <div data-label="Description" className='line-clamp-3'>{order.disc}</div>
+                                <div data-label="Delete">
+                                    <div className='flex flex-row gap-2 justify-start items-start'>
+                                        <span onClick={() => navigate(`/editKutir/${order._id}`)} className='editGift'>Edit</span>
+                                        <span onClick={() => setDeleteConfirm({ _id: order._id, id: order.imageId })} className='deleteUser'>Delete</span>
+                                    </div>
+                                </div>
                             </div>
                         ))
                     )}

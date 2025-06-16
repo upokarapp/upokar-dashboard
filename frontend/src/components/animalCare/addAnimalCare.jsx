@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { createAnimalCare } from "../../Api"
 
 const AmbulanceForm = () => {
@@ -27,8 +26,8 @@ const AmbulanceForm = () => {
         }
         if (!formData.number.trim()) {
             newErrors.number = 'Number is required';
-        } else if (!/^\d{10,11}$/.test(formData.number)) {
-            newErrors.number = 'Enter a valid phone number (10 to 11 digits)';
+        } else if (!/^\d{11,13}$/.test(formData.number)) {
+            newErrors.number = 'Enter a valid phone number (11 to 13 digits)';
         }
         if (!formData.location.trim()) {
             newErrors.location = 'Location is required';
@@ -44,8 +43,6 @@ const AmbulanceForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
-
-        console.log(formData);
 
         // setIsSubmitting(true);
 

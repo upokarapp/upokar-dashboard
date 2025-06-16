@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import axios from 'axios';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import CloseIcon from '@mui/icons-material/Close';
+import { addProduct } from '../../api';
+
 import './addProduct.css';
 
 const AddProduct = () => {
@@ -17,7 +18,7 @@ const AddProduct = () => {
   const fileInputRef = useRef(null);
 
   // Categories list
-  const categories = ['Bike', 'Furniture', 'Book', 'Electronics', 'Mobile','Grocery', 'Others'];
+  const categories = ['Bike', 'Furniture', 'Book', 'Electronics', 'Mobile', 'Grocery', 'Others'];
 
   useEffect(() => {
     return () => {
@@ -89,21 +90,16 @@ const AddProduct = () => {
         formData.append(`images`, image.file);
       });
 
-      const response = await axios.post('https://upokar-dashboard-api.onrender.com/api/products', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
+      const response = await addProduct(formData);
 
-      if (response.data.success) {
-        // Reset form
+      if (response.success) {
         setProductData({ name: '', description: '', price: '', category: '' }); // Reset category
         setImages([]);
         if (fileInputRef.current) fileInputRef.current.value = '';
         alert('Product added successfully!');
       }
     } catch (error) {
-      const errorMessage = error.response?.data?.message || 'Failed to add product';
+      const errorMessage = error.message || 'Failed to add product';
       alert(`Error: ${errorMessage}`);
     } finally {
       setIsSubmitting(false);
@@ -145,10 +141,10 @@ const AddProduct = () => {
           <input
             type="number"
             name="price"
-            step="0.01"
             value={productData.price}
             onChange={handleInputChange}
             className={errors.price ? 'error' : ''}
+            onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })}
           />
           {errors.price && <span className="error-message">{errors.price}</span>}
         </div>

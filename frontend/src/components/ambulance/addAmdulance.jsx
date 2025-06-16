@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { createAmbulance } from "../../Api"
 
 const AmbulanceForm = () => {
     const [formData, setFormData] = useState({
@@ -25,8 +25,8 @@ const AmbulanceForm = () => {
         }
         if (!formData.number.trim()) {
             newErrors.number = 'Number is required';
-        } else if (!/^\d{10,11}$/.test(formData.number)) {
-            newErrors.number = 'Enter a valid phone number (10 to 11 digits)';
+        } else if (!/^\d{11,13}$/.test(formData.number)) {
+            newErrors.number = 'Enter a valid phone number (11 to 13 digits)';
         }
         if (!formData.location.trim()) {
             newErrors.location = 'Location is required';
@@ -42,15 +42,13 @@ const AmbulanceForm = () => {
         setIsSubmitting(true);
 
         try {
-            // Post the form data to your backend API endpoint for adding an ambulance
-            // await axios.post('https://api-upokar.onrender.com/createAmbulance', {name: formData.ambulanceName, number: formData.number, location: formData.location});
-            await axios.post('https://upokar-dashboard-api.onrender.com/createAmbulance', {name: formData.ambulanceName, number: formData.number, location: formData.location});
+            await createAmbulance({ name: formData.ambulanceName, number: formData.number, location: formData.location });
             // Clear the form after a successful submission
             setFormData({ ambulanceName: '', number: '', location: '' });
             alert('Ambulance added successfully!');
         } catch (error) {
             // Display error message based on server response if available
-            alert(`Error: ${error.response?.data?.message || 'Failed to add ambulance'}`);
+            alert(`Error: ${error}`);
         } finally {
             setIsSubmitting(false);
         }

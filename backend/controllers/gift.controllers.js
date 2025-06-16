@@ -22,6 +22,24 @@ export const getGift = async (req, res) => {
     }
 }
 
+export const updateGift = async (req, res) => {
+    const id = req.params.id;
+    const data = req.body;
+    try {
+        const updatedGift = await Gift.findByIdAndUpdate(
+            id,
+            data,
+            { new: true }
+        );
+        if (!updatedGift) {
+            return res.status(404).json({ message: 'Gift not found' });
+        }
+        res.json(updatedGift);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
 export const uploadGiftImage = async (req, res) => {
     const { centerName, contactNumber, price, description, category } = req.body;
     try {

@@ -38,7 +38,6 @@ const JobPostForm = () => {
         try {
             setLoading(true);
             const response = await createJob(formData);
-            console.log(response);
             setFormData({
                 employer: '',
                 jobType: '',
