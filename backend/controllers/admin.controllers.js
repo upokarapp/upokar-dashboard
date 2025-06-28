@@ -16,27 +16,23 @@ const login = async (req, res) => {
     if (!admin || admin.password !== password) {
       return res.status(401).json({ message: "Invalid credentialsss" });
     }
-    // const token = jwt.sign(
-    //     { userName: admin.name, type: admin.type, id: admin._id },
-    //     process.env.JWT_SECRET,
-    //     { expiresIn: "30d" }
-    // );
-    const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h", // Token expires in 1 hour
+    const token = jwt.sign(
+      { userName: admin.name, type: admin.type, id: admin._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "30d" }
+    );
+
+    res.cookie("access_token", token, {
+      httpOnly: true, // inaccessible to JS (XSS protection)
+      secure: true, // only over HTTPS
+      sameSite: "Lax", // lax, strict, none", // allow cross-site
+      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+      path: "/",
     });
-    res
-      .cookie("access_token", token, {
-        httpOnly: true, // inaccessible to JS (XSS protection)
-        secure: true, // only over HTTPS
-        sameSite: "Lax", // lax, strict, none", // allow cross-site
-        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-        path: "/",
-      })
-      .status(200)
-      .json({
-        name: admin.name,
-        type: admin.type,
-      });
+    res.status(200).json({
+      name: admin.name,
+      type: admin.type,
+    });
   } catch (error) {
     console.log(error);
 
