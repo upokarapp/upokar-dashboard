@@ -1,24 +1,484 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="bn">
+  <!-- Changed language to Bengali -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>উপকার - আপনার দৈনন্দিন সেবার অ্যাপ</title>
+    <!-- Translated Title -->
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              inter: ["Inter", "sans-serif"], // Keep Inter for modern look
+            },
+            colors: {
+              primary: "#10B981", // A nice green for Upokar
+              secondary: "#3B82F6", // A blue for accents
+              dark: "#1F2937", // Dark text/background
+              light: "#F3F4F6", // Light backgrounds
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /* Custom CSS for smooth scroll behavior and general enhancements */
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif; /* Using Inter, can be changed to a Bengali font if available */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+      }
+      .gradient-background {
+        background: linear-gradient(
+          to right,
+          #10b981,
+          #34d399
+        ); /* Green gradient */
+      }
+      .btn-primary {
+        @apply bg-primary text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-opacity-90 transition duration-300;
+      }
+      .btn-secondary {
+        @apply bg-secondary text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-opacity-90 transition duration-300;
+      }
+      .service-card {
+        @apply bg-white p-6 rounded-2xl shadow-xl flex flex-col items-center text-center transform hover:scale-105 transition duration-330;
+      }
+      .icon-box {
+        @apply text-primary text-5xl mb-4 p-4 bg-primary bg-opacity-10 rounded-full;
+      }
+    </style>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/images/favicon.jpg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <title>Upokar Admin Dashboard</title>
-  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-  <style>
-    body {
-      background: linear-gradient(98.75deg, #b3b3fc4d 2.58%, #c7ebff4d 47.57%, #c7ffc74d 98.55%);
-      background: #0f88ef33;
-    }
-  </style>
-</head>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="bg-light text-dark">
+    <!-- Header Section -->
+    <header class="bg-white shadow-md py-4 sticky top-0 z-50 rounded-b-xl">
+      <nav class="container mx-auto px-4 flex justify-between items-center">
+        <!-- Logo -->
+        <a href="#" class="text-3xl font-bold text-primary flex items-center">
+          <img src="./icon2.jpg" class="h-[50px]" alt="" />
+        </a>
 
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
-</body>
+        <!-- Mobile Menu Button (Hamburger) -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-dark focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
 
+        <!-- Navigation Links (Desktop) -->
+        <ul class="hidden md:flex space-x-8">
+          <li>
+            <a
+              href="#hero"
+              class="text-dark hover:text-primary font-medium transition duration-200"
+              >হোম</a
+            >
+          </li>
+          <!-- Translated -->
+          <li>
+            <a
+              href="#services"
+              class="text-dark hover:text-primary font-medium transition duration-200"
+              >সেবাসমূহ</a
+            >
+          </li>
+          <!-- Translated -->
+          <li>
+            <a
+              href="#grocery"
+              class="text-dark hover:text-primary font-medium transition duration-200"
+              >মুদি বাজার</a
+            >
+          </li>
+          <!-- Translated -->
+          <li>
+            <a
+              href="#contact"
+              class="text-dark hover:text-primary font-medium transition duration-200"
+              >যোগাযোগ</a
+            >
+          </li>
+          <!-- Translated -->
+          <li>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.mdshahid73844.portfolio"
+              class="btn-primary"
+              >অ্যাপ ডাউনলোড করুন</a
+            >
+          </li>
+          <!-- Translated -->
+        </ul>
+      </nav>
+
+      <!-- Mobile Menu (Hidden by Default) -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white mt-4 rounded-xl mx-4 shadow-lg"
+      >
+        <ul class="flex flex-col items-center py-4 space-y-4">
+          <li>
+            <a
+              href="#hero"
+              class="text-dark hover:text-primary font-medium transition duration-200 py-2 block"
+              >হোম</a
+            >
+          </li>
+          <!-- Translated -->
+          <li>
+            <a
+              href="#services"
+              class="text-dark hover:text-primary font-medium transition duration-200 py-2 block"
+              >সেবাসমূহ</a
+            >
+          </li>
+          <!-- Translated -->
+          <li>
+            <a
+              href="#grocery"
+              class="text-dark hover:text-primary font-medium transition duration-200 py-2 block"
+              >মুদি বাজার</a
+            >
+          </li>
+          <!-- Translated -->
+          <li>
+            <a
+              href="#contact"
+              class="text-dark hover:text-primary font-medium transition duration-200 py-2 block"
+              >যোগাযোগ</a
+            >
+          </li>
+          <!-- Translated -->
+          <li>
+            <a href="#" class="btn-primary w-max mt-2">অ্যাপ ডাউনলোড করুন</a>
+          </li>
+          <!-- Translated -->
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section
+        id="hero"
+        class="relative gradient-background text-white py-20 md:py-32 flex items-center justify-center min-h-[calc(100vh-80px)] rounded-b-3xl shadow-xl"
+      >
+        <div class="container mx-auto px-4 text-center z-10">
+          <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+            আপনার দৈনন্দিন প্রয়োজনের জন্য ওয়ান-স্টপ সমাধান
+          </h1>
+          <!-- Translated Headline -->
+          <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10 opacity-90">
+            উপকার আপনার হাতের মুঠোয় চিকিৎসা সেবা থেকে শুরু করে মুদি দোকানের
+            পণ্য ডেলিভারি পর্যন্ত বিস্তৃত পরিষেবা প্রদান করে। আমাদের বিস্তৃত
+            মোবাইল অ্যাপের মাধ্যমে আপনার জীবনকে সহজ করুন।
+          </p>
+          <!-- Translated Subtitle -->
+          <div
+            class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6"
+          >
+            <a
+              href="https://play.google.com/store/apps/details?id=com.mdshahid73844.portfolio"
+              class="bg-[#00000080] !inline px-6 py-2 rounded-xl"
+            >
+              <i class="fab fa-google-play mr-2"></i> গুগল প্লে-তে পান
+            </a>
+          </div>
+        </div>
+        <!-- Decorative shapes (optional, but adds modern feel) -->
+        <div class="absolute inset-0 overflow-hidden">
+          <div
+            class="absolute top-0 left-0 w-64 h-64 bg-white opacity-10 rounded-full -translate-x-1/2 -translate-y-1/2"
+          ></div>
+          <div
+            class="absolute bottom-0 right-0 w-96 h-96 bg-white opacity-10 rounded-full translate-x-1/2 -translate-y-1/2"
+          ></div>
+        </div>
+      </section>
+
+      <!-- Our Services Section -->
+      <section
+        id="services"
+        class="py-16 md:py-24 bg-white rounded-2xl mx-4 -mt-16 relative shadow-2xl z-20"
+      >
+        <div class="container mx-auto px-4">
+          <h2
+            class="text-3xl md:text-5xl font-bold text-center mb-12 text-dark"
+          >
+            আমাদের সেবাসমূহ
+          </h2>
+          <!-- Translated Headline -->
+          <p class="text-center text-lg max-w-4xl mx-auto mb-16 text-gray-700">
+            উপকার আপনার মোবাইল ডিভাইসে সরাসরি প্রয়োজনীয় সেবার এক বিশাল সম্ভার
+            নিয়ে এসেছে। স্বাস্থ্য থেকে শুরু করে বাড়ির কাজ পর্যন্ত, আমরা সবসময়
+            আপনার পাশে আছি।
+          </p>
+          <!-- Translated Subtitle -->
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Service Card 1: Medical -->
+            <div class="service-card">
+              <div class="icon-box text-center">
+                <i class="fas fa-heartbeat text-4xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2 text-dark text-center">
+                চিকিৎসা সেবা
+              </h3>
+              <!-- Translated -->
+              <p class="text-gray-600">
+                হাসপাতাল, অ্যাম্বুলেন্স, ব্লাড ব্যাংক, ফার্মেসী, ডায়াগনস্টিক,
+                এবং পশু-চিকিৎসা সুবিধা পান।
+              </p>
+              <!-- Translated -->
+            </div>
+
+            <!-- Service Card 2: Vehicle Rent -->
+            <div class="service-card">
+              <div class="icon-box text-center">
+                <i class="fas fa-car text-4xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2 text-dark text-center">
+                গাড়ি ভাড়া
+              </h3>
+              <!-- Translated -->
+              <p class="text-gray-600">
+                আপনার ভ্রমণের জন্য সহজে গাড়ি, বাস, ট্রাক, সিএনজি, বাইক এবং
+                লেগুনা ভাড়া করুন।
+              </p>
+              <!-- Translated -->
+            </div>
+
+            <!-- Service Card 3: Buy & Sell -->
+            <div class="service-card">
+              <div class="icon-box text-center">
+                <i class="fas fa-tags text-4xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2 text-dark text-center">
+                ক্রয়-বিক্রয়
+              </h3>
+              <!-- Translated -->
+              <p class="text-gray-600">
+                বাইক, ফার্নিচার, বই, ইলেকট্রনিক্স এবং মোবাইল ফোন কিনুন ও বিক্রি
+                করুন।
+              </p>
+              <!-- Translated -->
+            </div>
+
+            <!-- Service Card 4: Home & Utility -->
+            <div class="service-card">
+              <div class="icon-box text-center">
+                <i class="fas fa-home text-4xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2 text-dark text-center">
+                বাসা ও ইউটিলিটি
+              </h3>
+              <!-- Translated -->
+              <p class="text-gray-600">
+                গ্যাস সিলিন্ডার, কমিউনিটি সেন্টার, এবং মিস্ত্রিদের (দক্ষ শ্রমিক)
+                জন্য পরিষেবা।
+              </p>
+              <!-- Translated -->
+            </div>
+
+            <!-- Service Card 5: Education & Jobs -->
+            <div class="service-card">
+              <div class="icon-box text-center">
+                <i class="fas fa-graduation-cap text-4xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2 text-dark text-center">
+                শিক্ষা ও চাকরি
+              </h3>
+              <!-- Translated -->
+              <p class="text-gray-600">
+                টিউশন পরিষেবা, চাকরির সুযোগ এবং আইটি ক্ষেত্রে আপনার দক্ষতা
+                বাড়ান।
+              </p>
+              <!-- Translated -->
+            </div>
+
+            <!-- Service Card 6: Travel & Leisure -->
+            <div class="service-card">
+              <div class="icon-box text-center">
+                <i class="fas fa-plane text-4xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2 text-dark text-center">
+                ভ্রমণ ও অবসর
+              </h3>
+              <!-- Translated -->
+              <p class="text-gray-600">
+                ভ্রমণের বিকল্পগুলি অন্বেষণ করুন, অনন্য উপহার খুঁজুন এবং
+                স্বেচ্ছাসেবকদের সাথে যুক্ত হন।
+              </p>
+              <!-- Translated -->
+            </div>
+
+            <!-- Service Card 7: Community & Help -->
+            <div class="service-card">
+              <div class="icon-box text-center">
+                <i class="fas fa-hands-helping text-4xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2 text-dark text-center">
+                কমিউনিটি ও সাহায্য
+              </h3>
+              <!-- Translated -->
+              <p class="text-gray-600">
+                হারানো ও পাওয়া, স্বেচ্ছাসেবামূলক সেবা এবং বিশেষজ্ঞ পরামর্শ
+                আপনার হাতের মুঠোয়।
+              </p>
+              <!-- Translated -->
+            </div>
+
+            <!-- Service Card 8: Local Business & Crafts -->
+            <div class="service-card">
+              <div class="icon-box text-center">
+                <i class="fas fa-paint-brush text-4xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2 text-dark text-center">
+                কুটির শিল্প ও স্থানীয় ব্যবসা
+              </h3>
+              <!-- Translated -->
+              <p class="text-gray-600">
+                স্থানীয় কুটির শিল্পকে সমর্থন করুন এবং অনন্য হাতে তৈরি পণ্য
+                খুঁজুন।
+              </p>
+              <!-- Translated -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Grocery Section -->
+      <section id="grocery" class="py-16 md:py-24 bg-light">
+        <div
+          class="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-12"
+        >
+          <div class="lg:w-1/2">
+            <img
+              src="https://ik.imagekit.io/mdshahid/grocaryImages/vegetables-pictures-qs8trfk65nvldcyr_8o5IllJFv.jpg"
+              alt="তাজা মুদি পণ্য ডেলিভারি"
+              class="rounded-3xl shadow-xl transform hover:scale-105 transition duration-300"
+            />
+            <!-- Translated Alt Text -->
+          </div>
+          <div class="lg:w-1/2 text-center lg:text-left">
+            <h2 class="text-3xl md:text-5xl font-bold text-dark mb-6">
+              তাজা মুদি পণ্য, আপনার দোরগোড়ায় ডেলিভারি
+            </h2>
+            <!-- Translated Headline -->
+            <p class="text-lg text-gray-700 mb-8">
+              উপকারের মাধ্যমে আপনার দৈনন্দিন প্রয়োজনীয় জিনিসপত্র কেনা এখন অনেক
+              সহজ। ঘরে বসেই তাজা শাকসবজি, নিত্যপ্রয়োজনীয় পণ্য এবং আরও অনেক
+              কিছুর বিশাল সংগ্রহ থেকে বেছে নিন।
+            </p>
+            <!-- Translated Paragraph -->
+            <a href="#" class="btn-primary">
+              <i class="fas fa-shopping-basket mr-2"></i> এখনই মুদি অর্ডার করুন
+            </a>
+            <!-- Translated Button Text -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action Section -->
+      <section
+        class="gradient-background text-white py-16 md:py-20 text-center rounded-t-3xl shadow-lg"
+      >
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl md:text-5xl font-bold mb-6">
+            আপনার জীবনকে সহজ করতে প্রস্তুত?
+          </h2>
+          <!-- Translated Headline -->
+          <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10 opacity-90">
+            হাজার হাজার সন্তুষ্ট ব্যবহারকারীদের সাথে যোগ দিন যারা উপকারের
+            সুবিধার অভিজ্ঞতা নিচ্ছেন। আজই অ্যাপটি ডাউনলোড করুন!
+          </p>
+          <!-- Translated Paragraph -->
+          <div
+            class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6"
+          >
+            <a
+              href="https://play.google.com/store/apps/details?id=com.mdshahid73844.portfolio"
+              class="btn-secondary"
+            >
+              <i class="fab fa-google-play mr-2"></i> গুগল প্লে-তে পান
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer
+      id="contact"
+      class="bg-dark text-white py-10 md:py-16 rounded-t-xl -translate-y-5"
+    >
+      <div class="container mx-auto px-4 text-center">
+        <div
+          class="flex flex-col md:flex-row justify-between items-center mb-8"
+        >
+          <div class="text-2xl font-bold text-primary mb-4 md:mb-0">উপকার</div>
+          <!-- Translated -->
+          <ul class="flex space-x-6 mb-4 md:mb-0">
+            <li>
+              <a
+                href="#"
+                class="text-white hover:text-primary transition duration-200"
+                >গোপনীয়তা নীতি</a
+              >
+            </li>
+            <!-- Translated -->
+            <li>
+              <a
+                href="#"
+                class="text-white hover:text-primary transition duration-200"
+                >ব্যবহারের শর্তাবলী</a
+              >
+            </li>
+            <!-- Translated -->
+          </ul>
+          <div class="flex space-x-4">
+            <a
+              href="https://www.facebook.com/profile.php?id=61572900792757"
+              class="text-white hover:text-primary transition duration-200 text-2xl"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a
+              href="#"
+              class="text-white hover:text-primary transition duration-200 text-2xl"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a
+              href="#"
+              class="text-white hover:text-primary transition duration-200 text-2xl"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/upokarbangladesh"
+              class="text-white hover:text-primary transition duration-200 text-2xl font-[SolaimanLipi]"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+        <p class="text-gray-400 text-sm font-[SolaimanLipi]">
+          &copy; ২০২৫ উপকার। সর্বস্বত্ব সংরক্ষিত।
+        </p>
+        <!-- Translated Copyright -->
+      </div>
+    </footer>
+
+    <!-- Link to external JavaScript file -->
+    <script src="./script.js"></script>
+  </body>
 </html>
