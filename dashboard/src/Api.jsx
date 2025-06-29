@@ -7,7 +7,7 @@ const config = {
 };
 
 const URL = "http://localhost:2000";
-// const URL = "http://160.25.7.151:2000";
+// const URL = "https://api.upokar.com.bd";
 
 // const URL = 'https://upokar-dashboard-api.onrender.com';
 

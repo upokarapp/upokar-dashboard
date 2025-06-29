@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import CloseIcon from '@mui/icons-material/Close';
-import { addProduct } from '../../api';
+import { addProduct } from '../../Api';
 
 import './addProduct.css';
 
