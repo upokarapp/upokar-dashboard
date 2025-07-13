@@ -35,6 +35,8 @@ import total from "./routes/total.routes.js";
 import diagnosticRoutes from "./routes/diagnostic.js";
 import sliderGrocary from "./routes/sliderGrocary.routes.js";
 import groceryOrderRoutes from "./routes/groceryOrder.routes.js";
+import tokenRoutes from "./routes/token.routes.js";
+import notificationRoutes from "./routes/notification.routes.js";
 
 dotenv.config();
 connection();
@@ -83,7 +85,8 @@ app.use(landf);
 app.use(total);
 app.use(sliderGrocary);
 app.use(groceryOrderRoutes);
-
+app.use(tokenRoutes);
+app.use(notificationRoutes);
 app.use("/api", fileRoutes);
 // Basic root route
 app.get("/", (req, res) => {

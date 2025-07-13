@@ -33,7 +33,7 @@ import MedicalServicesIcon from '@mui/icons-material/MedicalServices'; // For Di
 import PersonIcon from '@mui/icons-material/Person';
 import BloodtypeIcon from '@mui/icons-material/Bloodtype';
 import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
-
+import Notifications from '@mui/icons-material/Notifications';
 import "./sidebar.css";
 
 const Sidebar = () => {
@@ -268,6 +268,12 @@ const Sidebar = () => {
       icon: <AccountCircleIcon className="icon" />,
       text: 'Admins',
     },
+    {
+      type: 'link',
+      to: '/notifications',
+      icon: <Notifications className="icon" />,
+      text: 'Notification',
+    },
     { type: 'title', text: 'USER' },
     {
       type: 'link',
@@ -279,7 +285,7 @@ const Sidebar = () => {
       type: 'logout',
       icon: <ExitToAppIcon className="icon" />,
       text: 'Logout',
-    },
+    }
   ];
   return (
     <>

@@ -9,8 +9,6 @@ const config = {
 const URL = "http://localhost:2000";
 // const URL = "https://api.upokar.com.bd";
 
-// const URL = 'https://upokar-dashboard-api.onrender.com';
-
 // ---------------- Customer api ------------------------------------
 const getAllCustomer = async (page = 1, limit = 10) => {
   try {
@@ -1051,6 +1049,41 @@ const deleteLostPerson = async (data) => {
     throw new Error("Failed to fetch all admins");
   }
 };
+// ---------------- Notification api ------------------------------------
+const createNotification = async (data) => {
+  try {
+    const response = await axios.post(`${URL}/createNotification`, data, config);
+    return response.data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message
+        ? error.response.data?.message
+        : error.message || "Failed to create notification"
+    );
+  }
+};
+
+const getAllNotification = async (page = 1, limit = 10) => {
+  try {
+    const response = await axios.get(
+      `${URL}/getAllNotification?page=${page}&limit=${limit}`,
+      config
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch notifications");
+  }
+};
+
+const deleteNotification = async (id) => {
+  try {
+    const response = await axios.delete(`${URL}/deleteNotification/${id}`, config);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to delete notification");
+  }
+};
+
 // ---------------- Total api ------------------------------------
 const getTotalCounts = async () => {
   try {
@@ -1277,4 +1310,8 @@ export {
   getAdminData,
   adminUpdate,
   deleteAdmin,
+  // Notification
+  createNotification,
+  getAllNotification,
+  deleteNotification,
 };

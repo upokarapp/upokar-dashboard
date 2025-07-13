@@ -98,6 +98,9 @@ import Doctors from "../components/diagnostic/doctors";
 
 // 🩸 Blood Donors
 import BloodDonners from "../components/blood donors/showBloodDonors";
+// 🔔 Notification
+import SendNotification from "../components/notification/sendNotification";
+import ShowNotification from "../components/notification/showNotifications";
 
 
 
@@ -167,6 +170,8 @@ export default function App() {
                             <Route path='/volunteers' element={<ShowVolunteers />} />
                             <Route path='/addVolunteers' element={<AddVolunteers />} />
                             <Route path='/lostpersons' element={<LostPerson />} />
+                            <Route path='/addNotification' element={<SendNotification />} />
+                            <Route path='/notifications' element={<ShowNotification />} />
                             <Route path='/admins' element={<AdminsTable />} />
                             <Route path='/createadmin' element={<CreateAdmin />} />
                             <Route path='/profile' element={<UpadateAdmin />} />
