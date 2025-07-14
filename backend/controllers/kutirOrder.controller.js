@@ -3,8 +3,6 @@ import KutirOrder from '../models/kutirOrder.model.js';
 
 
 export const createKutirOrder = async (req, res) => {
-    console.log("Creating Kutir Order:", req.body);
-    
     try {
         const order = new KutirOrder(req.body);
         await order.save();

@@ -47,6 +47,7 @@ const getAdminData = async (req, res) => {
     const admin = await Admin.findById(id);
     res.status(200).json(admin);
   } catch (error) {
+    console.log(error);
     res.status(404).json({ message: "Admin not found" });
   }
 };
@@ -67,6 +68,7 @@ const adminUpdate = async (req, res) => {
     );
     res.status(200).json(updatedUser);
   } catch (error) {
+    console.log(error);
     res.status(404).json({ message: "Admin not found" });
   }
 };
@@ -85,7 +87,7 @@ const allAdmin = async (req, res) => {
 
     res.json(admins);
   } catch (error) {
-    console.error("Error fetching all admins:", error); // Log the error for debugging
+    console.log(error);
     res.status(500).json({ message: "Server error while fetching admins" });
   }
 };
@@ -134,7 +136,7 @@ const createAdmin = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error("Error creating admin:", error); // Log the error for debugging
+    console.log(error);
     res.status(500).json({ message: "Server error while creating admin" });
   }
 };
@@ -149,6 +151,7 @@ const deleteAdmin = async (req, res) => {
     }
     res.json({ message: "Admin deleted successfully" });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Server error" });
   }
 };

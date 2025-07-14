@@ -21,7 +21,6 @@ export const createAmbulance = async (req, res) => {
 
 export const deleteAmbulance = async (req, res) => {
     const { id } = req.params;
-    // console.log(id);
     try {
         const deletedAmbulance = await Ambulance.findByIdAndDelete(id);
         if (!deletedAmbulance) {

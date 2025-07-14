@@ -30,8 +30,6 @@ export const getDiagnostic = async (req, res) => {
 // Controller to add a product with images.
 export const uploadDiagnosticImage = async (req, res) => {
     const { diagnosticName, contactNumber, location, doctors } = req.body;
-    console.log(req.body);
-
     try {
         if (!req.file || !diagnosticName || !contactNumber || !location || !doctors) {
             return res.status(400).json({ success: false, message: 'No file uploaded' });

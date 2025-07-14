@@ -96,7 +96,7 @@ const OrderTable = () => {
                                 className="btn danger"
                                 onClick={() => handelDelete(deleteConfirm)}
                             >
-                                Delete Order
+                                Delete Lost Person
                             </button>
                         </div>
                     </div>

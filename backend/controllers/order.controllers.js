@@ -156,7 +156,6 @@ export const getAllOrders = async (req, res) => {
                 $sort: { _id: -1 }
             }
         ]);
-            console.log(orders);
         res.status(200).json(orders);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -267,8 +266,6 @@ export const searchOrders = async (req, res) => {
 
 
 export const order = async (req, res) => {
-    console.log(req.body);
-
     try {
         const order = new Order(req.body);
         await order.save();

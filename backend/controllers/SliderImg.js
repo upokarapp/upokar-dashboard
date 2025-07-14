@@ -41,8 +41,6 @@ export const uploadSliderImage = async (req, res) => {
 };
 
 export const updateSliderImage = async (req, res) => {
-    console.log(req.body.id);
-    console.log(req.body._id);
 
     try {
         if (!req.file) {

@@ -41,9 +41,6 @@ export const uploadSliderImage = async (req, res) => {
 };
 
 export const updateSliderImage = async (req, res) => {
-    console.log(req.body.id);
-    console.log(req.body._id);
-
     try {
         if (!req.file) {
             return res.status(400).json({ success: false, message: 'No file uploaded' });

@@ -1,8 +1,6 @@
 import GasPrice from '../models/gasPrice.js';
 
-export const setGasPrice = async (req, res) => {
-    console.log(req.body);
-    
+export const setGasPrice = async (req, res) => {   
     try {
         const newGasPrice = await GasPrice.updateOne(
             {}, // You can define a filter if necessary
@@ -13,15 +11,12 @@ export const setGasPrice = async (req, res) => {
         res.status(201).json(newGasPrice);
     } catch (error) {
         console.log(error);
-        
         res.status(500).json({ message: 'Server error' });
     }
 };
 
 export const getGasPrice = async (req, res) => {
-
     try {
-
         const response = await GasPrice.find();
         res.status(201).json(response);
     } catch (error) {

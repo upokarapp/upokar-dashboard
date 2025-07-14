@@ -108,7 +108,7 @@ const OrderTable = () => {
                                 className="btn danger"
                                 onClick={() => handelDelete(deleteConfirm)}
                             >
-                                Delete Order
+                                Delete Cylinder
                             </button>
                         </div>
                     </div>

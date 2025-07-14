@@ -6,8 +6,6 @@ import BikeOrder from '../models/Transport/bike.model.js';
 import LegunaOrder from '../models/Transport/leguna.model.js';
 import CNGOrder from '../models/Transport/cng.model.js';
 const createCarOrder = async (req, res) => {
-    console.log(req.body);
-
     try {
         const newOrder = new CarOrder(req.body);
         await newOrder.save();
@@ -19,8 +17,6 @@ const createCarOrder = async (req, res) => {
     }
 };
 const createBusOrder = async (req, res) => {
-    console.log(req.body);
-
     try {
         const newOrder = new BusOrder(req.body);
         await newOrder.save();
@@ -32,8 +28,6 @@ const createBusOrder = async (req, res) => {
     }
 };
 const createTruckOrder = async (req, res) => {
-    console.log(req.body);
-
     try {
         const newOrder = new TruckOrder(req.body);
         await newOrder.save();
@@ -45,8 +39,6 @@ const createTruckOrder = async (req, res) => {
     }
 };
 const createCngOrder = async (req, res) => {
-    console.log(req.body);
-
     try {
         const newOrder = new CngOrder(req.body);
         await newOrder.save();
@@ -58,8 +50,6 @@ const createCngOrder = async (req, res) => {
     }
 };
 const createBikeOrder = async (req, res) => {
-    console.log(req.body);
-
     try {
         const newOrder = new BikeOrder(req.body);
         await newOrder.save();
@@ -71,8 +61,6 @@ const createBikeOrder = async (req, res) => {
     }
 };
 const createLegunaOrder = async (req, res) => {
-    console.log(req.body);
-
     try {
         const newOrder = new LegunaOrder(req.body);
         await newOrder.save();

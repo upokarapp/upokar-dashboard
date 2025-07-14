@@ -158,7 +158,7 @@ const Sidebar = () => {
       type: 'link',
       to: '/bloodDonors',
       icon: <BloodtypeIcon className="icon" />,
-      text: 'Blood Bonors',
+      text: 'Blood Donors',
     },
     {
       type: 'link',

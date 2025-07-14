@@ -56,7 +56,6 @@ export const createNotification = async (req, res) => {
       .status(400)
       .json({ message: "Title and discription are required." });
   }
-  console.log(title, discription);
   
   try {
     // Save the notification to the database first
@@ -118,7 +117,6 @@ export const createNotification = async (req, res) => {
 
     const tokensFromDB = await getAllToken();
     const tokens = tokensFromDB.map((token) => token.token);
-    console.log(tokens);
     const { successCount, failureCount, invalidTokens } = await sendNotifications(tokens, {
       title: title,
       body: discription,

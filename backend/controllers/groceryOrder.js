@@ -203,7 +203,6 @@ export const searchGroceryOrder = async (req, res) => {
 //     }
 // };
 export const getOrderById = async (req, res) => {
-    console.log(req.params.id);
     try {
         const order = await GroceryOrder.findById(req.params.id)
             .populate('orderItems.product', 'name price images');

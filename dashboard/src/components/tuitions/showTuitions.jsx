@@ -112,7 +112,7 @@ const OrderTable = () => {
                                 className="btn danger"
                                 onClick={() => handelDelete(deleteConfirm)}
                             >
-                                Delete Order
+                                Delete Tuition
                             </button>
                         </div>
                     </div>

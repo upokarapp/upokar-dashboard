@@ -6,8 +6,8 @@ const config = {
   withCredentials: true,
 };
 
-const URL = "http://localhost:2000";
-// const URL = "https://api.upokar.com.bd";
+// const URL = "http://localhost:2000";
+const URL = "https://api.upokar.com.bd";
 
 // ---------------- Customer api ------------------------------------
 const getAllCustomer = async (page = 1, limit = 10) => {
