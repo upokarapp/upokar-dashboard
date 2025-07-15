@@ -117,6 +117,8 @@ export const createNotification = async (req, res) => {
 
     const tokensFromDB = await getAllToken();
     const tokens = tokensFromDB.map((token) => token.token);
+    console.log(tokens);
+    
     const { successCount, failureCount, invalidTokens } = await sendNotifications(tokens, {
       title: title,
       body: discription,
